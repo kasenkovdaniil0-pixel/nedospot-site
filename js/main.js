@@ -169,7 +169,7 @@
         navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['top', 'features', 'interface', 'advantages', 'download'].forEach(function (id) {
+    ['top', 'features', 'interface', 'advantages', 'faq', 'download'].forEach(function (id) {
       var s = doc.getElementById(id);
       if (s) sio.observe(s);
     });
@@ -731,6 +731,17 @@
       })
       .catch(function () { clearTimeout(timer); });
   }
+
+  /* ---------- Вопросы: раскрывающийся список ---------- */
+
+  $$('[data-faq] .faq-q').forEach(function (btn) {
+    var panel = doc.getElementById(btn.getAttribute('aria-controls'));
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (panel) panel.classList.toggle('open', open);
+    });
+  });
 
   /* ---------- Год в подвале ---------- */
 

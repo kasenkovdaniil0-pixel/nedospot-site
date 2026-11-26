@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="assets/icon.png">
   <link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
 <body>
@@ -57,6 +57,8 @@
       <rect x="6.5" y="3" width="11" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
       <path d="M12 7v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
     </symbol>
+    <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.4 3.6c.6-.2 1.2.3 1 1l-3.2 15c-.2.8-1 1.1-1.7.7l-4.8-3.6-2.4 2.3c-.3.3-.8.2-1-.2l-1.7-5.4-4.8-1.6c-.8-.3-.8-1.3 0-1.6l18.6-6.6Zm-3.6 4L9 13.2l.9 3.8.3-2.8 7.9-6.2c.3-.2 0-.6-.3-.4Z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-win" viewBox="0 0 24 24">
       <rect x="3" y="4" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
       <path d="M8 21h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -74,6 +76,7 @@
         <a href="#features">Возможности</a>
         <a href="#interface">Интерфейс</a>
         <a href="#advantages">Преимущества</a>
+        <a href="#faq">Вопросы</a>
       </nav>
       <div class="nav-right">
         <a class="nav-cta" href="#download">
@@ -91,7 +94,8 @@
     <a href="#features" style="--i:0">Возможности</a>
     <a href="#interface" style="--i:1">Интерфейс</a>
     <a href="#advantages" style="--i:2">Преимущества</a>
-    <a href="#download" style="--i:3">Скачать</a>
+    <a href="#faq" style="--i:3">Вопросы</a>
+    <a href="#download" style="--i:4">Скачать</a>
   </div>
 
   <main>
@@ -327,12 +331,90 @@
       </div>
     </section>
 
-    <!-- 5. Установка -->
+    <!-- 5. Вопросы -->
+    <section class="section faq" id="faq">
+      <div class="section-glow" aria-hidden="true"></div>
+      <div class="wrap faq-grid">
+        <div class="faq-head">
+          <span class="label" data-reveal>04 — Вопросы</span>
+          <h2 class="title split" data-split>Частые вопросы.</h2>
+          <p class="lead" data-reveal style="--d:200ms">Не нашли ответ? Напишите в&nbsp;поддержку — отвечаем в&nbsp;течение 1&nbsp;рабочего дня.</p>
+          <a class="faq-tg" data-reveal style="--d:300ms" href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-tg"/></svg>
+            <span>@NedoSpot_Support</span>
+          </a>
+        </div>
+        <div class="faq-list" data-faq>
+          <div class="faq-item" data-reveal style="--d:0ms">
+            <h3>
+              <button class="faq-q" type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
+                <span class="faq-n">01</span>
+                <span class="faq-t">Откуда берётся музыка в NedoSpot?</span>
+                <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+              </button>
+            </h3>
+            <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">
+              <div class="faq-in"><p>Из SoundCloud и YouTube Music. Поиск идёт сразу по всем источникам.</p></div>
+            </div>
+          </div>
+          <div class="faq-item" data-reveal style="--d:70ms">
+            <h3>
+              <button class="faq-q" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                <span class="faq-n">02</span>
+                <span class="faq-t">Можно ли пользоваться NedoSpot бесплатно?</span>
+                <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+              </button>
+            </h3>
+            <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2">
+              <div class="faq-in"><p>Конечно. В NedoSpot нет рекламы, и пользоваться им можно бесплатно. VIP-подписка помогает поддерживать проект и даёт дополнительные полезные функции.</p></div>
+            </div>
+          </div>
+          <div class="faq-item" data-reveal style="--d:140ms">
+            <h3>
+              <button class="faq-q" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                <span class="faq-n">03</span>
+                <span class="faq-t">Что такое NedoSpot VIP?</span>
+                <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+              </button>
+            </h3>
+            <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3">
+              <div class="faq-in"><p>Подписка, которая даёт дополнительные полезные функции.</p></div>
+            </div>
+          </div>
+          <div class="faq-item" data-reveal style="--d:210ms">
+            <h3>
+              <button class="faq-q" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                <span class="faq-n">04</span>
+                <span class="faq-t">Как сообщить об ошибке или предложить новую функцию?</span>
+                <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+              </button>
+            </h3>
+            <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4">
+              <div class="faq-in"><p>Напишите нам в Telegram — <a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">@NedoSpot_Support</a>. Подробнее — на странице <a href="/support">«Контакты поддержки»</a>.</p></div>
+            </div>
+          </div>
+          <div class="faq-item" data-reveal style="--d:280ms">
+            <h3>
+              <button class="faq-q" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
+                <span class="faq-n">05</span>
+                <span class="faq-t">На каких системах работает NedoSpot?</span>
+                <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
+              </button>
+            </h3>
+            <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5">
+              <div class="faq-in"><p>Windows и Linux — каждое обновление выходит для обеих систем. Скоро выпустим версию для Android.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Установка -->
     <section class="install" id="download">
       <canvas class="install-canvas" aria-hidden="true"></canvas>
       <div class="install-shade" aria-hidden="true"></div>
       <div class="install-inner">
-        <span class="label" data-reveal>04 — Установка</span>
+        <span class="label" data-reveal>05 — Установка</span>
         <h2 class="split" data-split>Твоя следующая любимая привычка.</h2>
         <p class="sub" data-reveal style="--d:250ms">Открой NedoSpot и&nbsp;почувствуй музыку по-новому.</p>
         <div class="cta-row" data-reveal style="--d:400ms">
@@ -351,18 +433,40 @@
 
   <footer class="footer">
     <div class="wrap">
-      <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
-      <span>Музыка. Ничего лишнего.</span>
-      <nav aria-label="Ссылки в подвале">
-        <a href="#features">Возможности</a>
-        <a href="#interface">Интерфейс</a>
-        <a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener">Релизы</a>
-        <a href="/terms">Соглашение</a>
-        <a href="/privacy">Конфиденциальность</a>
-        <a href="/support">Поддержка</a>
-        <a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener">Telegram</a>
-      </nav>
-      <span>© <span data-year>2026</span> NedoSpot</span>
+      <div class="foot-card">
+        <div class="foot-top">
+          <div class="foot-about">
+            <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
+            <p>Музыка. Ничего лишнего.</p>
+            <div class="foot-social">
+              <a class="foot-ico" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener" aria-label="Telegram-канал NedoSpot" title="Telegram-канал"><svg aria-hidden="true"><use href="#i-tg"/></svg></a>
+            </div>
+          </div>
+          <nav class="foot-col" aria-label="Продукт">
+            <h4>Продукт</h4>
+            <a href="#download">Скачать</a>
+            <a href="#features">Возможности</a>
+            <a href="#interface">Интерфейс</a>
+            <a href="#faq">Вопросы</a>
+          </nav>
+          <nav class="foot-col" aria-label="Ссылки">
+            <h4>Ссылки</h4>
+            <a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener">Telegram-канал</a>
+            <a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">Поддержка</a>
+            <a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener">Все версии</a>
+          </nav>
+          <nav class="foot-col" aria-label="Документы">
+            <h4>Документы</h4>
+            <a href="/terms">Пользовательское соглашение</a>
+            <a href="/privacy">Политика конфиденциальности</a>
+            <a href="/support">Контакты поддержки</a>
+          </nav>
+        </div>
+        <div class="foot-bottom">
+          <span>© <span data-year>2026</span> NedoSpot</span>
+          <a href="#top" class="foot-up">Наверх</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -379,6 +483,6 @@
   </div>
 
   <script src="js/flowers.js?v=5"></script>
-  <script src="js/main.js?v=5"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>
