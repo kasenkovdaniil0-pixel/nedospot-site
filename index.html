@@ -12,8 +12,19 @@
   <link rel="icon" type="image/png" href="assets/icon.png">
   <link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=8">
-  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <script>
+    /* язык — до отрисовки: тот же выбор, что на страницах документов */
+    (function () {
+      var d = document.documentElement, l = null;
+      d.classList.replace('no-js', 'js');
+      try { l = localStorage.getItem('ns-lang'); } catch (e) {}
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'ru' || q === 'en') l = q;
+      d.setAttribute('data-lang', l === 'en' ? 'en' : 'ru');
+      if (l === 'en') d.lang = 'en';
+    })();
+  </script>
 </head>
 <body>
   <!-- Значки, которые используются несколько раз -->
@@ -63,6 +74,7 @@
     <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></g></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.6v12.8c0 .8.9 1.3 1.6.9l10-6.4c.6-.4.6-1.4 0-1.8l-10-6.4C8.9 4.3 8 4.8 8 5.6Z"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m-6 6 6-6 6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-win" viewBox="0 0 24 24">
       <rect x="3" y="4" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -73,27 +85,44 @@
   <!-- Навигация -->
   <header class="nav" id="nav">
     <div class="nav-inner">
-      <a class="brand" href="#top" aria-label="NedoSpot — наверх">
-        <svg aria-hidden="true"><use href="#i-logo"/></svg>
-        <span>NedoSpot</span>
-      </a>
-      <nav class="nav-links" aria-label="Разделы сайта">
-        <a href="#features">Возможности</a>
-        <a href="#interface">Интерфейс</a>
-        <a href="#advantages">Преимущества</a>
-        <a href="#faq">Вопросы</a>
+      <div class="nav-left">
+        <a class="brand" href="#top" aria-label="NedoSpot — наверх" data-i-attr="aria-label:nav.home">
+          <svg aria-hidden="true"><use href="#i-logo"/></svg>
+          <span>NedoSpot</span>
+        </a>
+        <a class="nav-tg" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener" title="Telegram — @NedoSpotApp">
+          <svg aria-hidden="true"><use href="#i-tg"/></svg>
+          <span data-i="nav.tg">Мы в Telegram</span>
+        </a>
+        <div class="nlang" data-lang-box>
+          <button class="nlang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="nlang-menu" aria-label="Язык / Language" title="Язык / Language">
+            <span class="nlang-cur" data-l="ru"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#1c57b8"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg><b>RU</b></span>
+            <span class="nlang-cur" data-l="en"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true"><rect width="19" height="13" fill="#fff"/><rect y="0" width="19" height="1" fill="#c8202f"/><rect y="2" width="19" height="1" fill="#c8202f"/><rect y="4" width="19" height="1" fill="#c8202f"/><rect y="6" width="19" height="1" fill="#c8202f"/><rect y="8" width="19" height="1" fill="#c8202f"/><rect y="10" width="19" height="1" fill="#c8202f"/><rect y="12" width="19" height="1" fill="#c8202f"/><rect width="8" height="7" fill="#273a7a"/><circle cx="1.5" cy="1.5" r=".45" fill="#fff"/><circle cx="1.5" cy="3.5" r=".45" fill="#fff"/><circle cx="1.5" cy="5.5" r=".45" fill="#fff"/><circle cx="4" cy="1.5" r=".45" fill="#fff"/><circle cx="4" cy="3.5" r=".45" fill="#fff"/><circle cx="4" cy="5.5" r=".45" fill="#fff"/><circle cx="6.5" cy="1.5" r=".45" fill="#fff"/><circle cx="6.5" cy="3.5" r=".45" fill="#fff"/><circle cx="6.5" cy="5.5" r=".45" fill="#fff"/></svg><b>EN</b></span>
+            <svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg>
+          </button>
+          <ul class="nlang-menu" id="nlang-menu" role="menu" aria-label="Язык / Language">
+            <li><button type="button" role="menuitemradio" data-set-lang="ru" aria-checked="true"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#1c57b8"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg><span>Русский</span><svg class="tick" aria-hidden="true"><use href="#i-check"/></svg></button></li>
+            <li><button type="button" role="menuitemradio" data-set-lang="en" aria-checked="false"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true"><rect width="19" height="13" fill="#fff"/><rect y="0" width="19" height="1" fill="#c8202f"/><rect y="2" width="19" height="1" fill="#c8202f"/><rect y="4" width="19" height="1" fill="#c8202f"/><rect y="6" width="19" height="1" fill="#c8202f"/><rect y="8" width="19" height="1" fill="#c8202f"/><rect y="10" width="19" height="1" fill="#c8202f"/><rect y="12" width="19" height="1" fill="#c8202f"/><rect width="8" height="7" fill="#273a7a"/><circle cx="1.5" cy="1.5" r=".45" fill="#fff"/><circle cx="1.5" cy="3.5" r=".45" fill="#fff"/><circle cx="1.5" cy="5.5" r=".45" fill="#fff"/><circle cx="4" cy="1.5" r=".45" fill="#fff"/><circle cx="4" cy="3.5" r=".45" fill="#fff"/><circle cx="4" cy="5.5" r=".45" fill="#fff"/><circle cx="6.5" cy="1.5" r=".45" fill="#fff"/><circle cx="6.5" cy="3.5" r=".45" fill="#fff"/><circle cx="6.5" cy="5.5" r=".45" fill="#fff"/></svg><span>English</span><svg class="tick" aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          </ul>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Разделы сайта" data-i-attr="aria-label:nav.aria">
+        <a href="#features" data-i="nav.features">Возможности</a>
+        <a href="#interface" data-i="nav.interface">Интерфейс</a>
+        <a href="#advantages" data-i="nav.advantages">Преимущества</a>
+        <a href="#faq" data-i="nav.faq">Вопросы</a>
         <div class="nav-docs" data-docs>
-          <button class="nav-docs-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="nav-docs-menu">Документы<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
-          <div class="nav-docs-menu" id="nav-docs-menu" role="menu" aria-label="Документы">
-            <a href="/terms" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-doc"/></svg></span><span class="nd-tx"><b>Пользовательское соглашение</b><small>Правила пользования NedoSpot</small></span></a>
-            <a href="/privacy" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-shield"/></svg></span><span class="nd-tx"><b>Политика конфиденциальности</b><small>Какие данные мы храним и зачем</small></span></a>
-            <a href="/support" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-chat"/></svg></span><span class="nd-tx"><b>Поддержка</b><small>@NedoSpot_Support · ответ за 1 рабочий день</small></span></a>
+          <button class="nav-docs-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="nav-docs-menu"><span data-i="nav.docs">Документы</span><svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <div class="nav-docs-menu" id="nav-docs-menu" role="menu" aria-label="Документы" data-i-attr="aria-label:nav.docs">
+            <a href="/terms" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-doc"/></svg></span><span class="nd-tx"><b data-i="doc.terms">Пользовательское соглашение</b><small data-i="dd.terms">Правила пользования NedoSpot</small></span></a>
+            <a href="/privacy" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-shield"/></svg></span><span class="nd-tx"><b data-i="doc.privacy">Политика конфиденциальности</b><small data-i="dd.privacy">Какие данные мы храним и зачем</small></span></a>
+            <a href="/support" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-chat"/></svg></span><span class="nd-tx"><b data-i="doc.support">Поддержка</b><small data-i="dd.support">@NedoSpot_Support · ответ за 1 рабочий день</small></span></a>
           </div>
         </div>
       </nav>
       <div class="nav-right">
         <a class="nav-cta" href="#download">
-          Скачать
+          <span data-i="nav.download">Скачать</span>
           <svg aria-hidden="true"><use href="#i-down"/></svg>
         </a>
         <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
@@ -104,16 +133,16 @@
   </header>
 
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="#features" style="--i:0">Возможности</a>
-    <a href="#interface" style="--i:1">Интерфейс</a>
-    <a href="#advantages" style="--i:2">Преимущества</a>
-    <a href="#faq" style="--i:3">Вопросы</a>
-    <a href="#download" style="--i:4">Скачать</a>
+    <a href="#features" style="--i:0" data-i="nav.features">Возможности</a>
+    <a href="#interface" style="--i:1" data-i="nav.interface">Интерфейс</a>
+    <a href="#advantages" style="--i:2" data-i="nav.advantages">Преимущества</a>
+    <a href="#faq" style="--i:3" data-i="nav.faq">Вопросы</a>
+    <a href="#download" style="--i:4" data-i="nav.download">Скачать</a>
     <div class="mm-docs" style="--i:5">
-      <span>Документы</span>
-      <a href="/terms">Соглашение</a>
-      <a href="/privacy">Конфиденциальность</a>
-      <a href="/support">Поддержка</a>
+      <span data-i="nav.docs">Документы</span>
+      <a href="/terms" data-i="mm.terms">Соглашение</a>
+      <a href="/privacy" data-i="mm.privacy">Конфиденциальность</a>
+      <a href="/support" data-i="doc.support">Поддержка</a>
     </div>
   </div>
 
@@ -125,24 +154,24 @@
       <div class="hero-shade" aria-hidden="true"></div>
 
       <div class="hero-inner" data-hero-parallax>
-        <span class="hero-eyebrow hero-fade" style="--d:.05s"><span class="dot"></span>Музыкальный плеер для Windows</span>
+        <span class="hero-eyebrow hero-fade" style="--d:.05s"><span class="dot"></span><span data-i="hero.eyebrow">Музыкальный плеер для Windows</span></span>
         <h1 class="hero-title" aria-label="NedoSpot" data-letters>NedoSpot</h1>
-        <p class="hero-slogan hero-fade" style="--d:.85s">Музыка. <em>Ничего лишнего.</em></p>
-        <p class="hero-desc hero-fade" style="--d:1s">Открой новый способ слушать музыку. Любимые треки, удобные инструменты и&nbsp;атмосфера, в&nbsp;которой хочется оставаться. Без рекламы и&nbsp;лишних ограничений интерфейса.</p>
+        <p class="hero-slogan hero-fade" style="--d:.85s" data-i="hero.slogan">Музыка. <em>Ничего лишнего.</em></p>
+        <p class="hero-desc hero-fade" style="--d:1s" data-i="hero.desc">Открой новый способ слушать музыку. Любимые треки, удобные инструменты и&nbsp;атмосфера, в&nbsp;которой хочется оставаться. Без рекламы и&nbsp;лишних ограничений интерфейса.</p>
         <div class="hero-actions hero-fade" style="--d:1.15s">
           <a class="btn btn-primary" data-release href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases/latest" target="_blank" rel="noopener" data-magnetic>
-            Скачать NedoSpot
+            <span data-i="btn.dl">Скачать NedoSpot</span>
             <span class="ico" aria-hidden="true"><svg><use href="#i-down"/></svg><svg><use href="#i-down"/></svg></span>
           </a>
           <a class="btn btn-ghost" href="#features" data-magnetic>
-            Узнать больше
+            <span data-i="hero.more">Узнать больше</span>
             <svg class="chev" width="16" height="16" aria-hidden="true"><use href="#i-chev"/></svg>
           </a>
         </div>
       </div>
 
       <p class="hero-meta hero-fade" style="--d:1.6s">Windows 10 · 11</p>
-      <a class="scroll-cue hero-fade" style="--d:1.8s" href="#features" aria-label="Листай вниз">
+      <a class="scroll-cue hero-fade" style="--d:1.8s" href="#features" aria-label="Листай вниз" data-i-attr="aria-label:hero.scroll">
         <span class="line"></span>
       </a>
     </section>
@@ -152,26 +181,26 @@
       <div class="section-glow" aria-hidden="true"></div>
       <div class="wrap">
         <div class="sec-head">
-          <span class="label" data-reveal>01 — Знакомься с NedoSpot</span>
-          <h2 class="title split" data-split>Твоя музыка. Твои правила.</h2>
-          <p class="lead" data-reveal style="--d:200ms">NedoSpot — современный музыкальный плеер для тех, кто ценит удобство, эстетику и&nbsp;свободу слушать любимую музыку без рекламных пауз.</p>
+          <span class="label" data-reveal data-i="f.label">01 — Знакомься с NedoSpot</span>
+          <h2 class="title split" data-split data-i="f.title">Твоя музыка. Твои правила.</h2>
+          <p class="lead" data-reveal style="--d:200ms" data-i="f.lead">NedoSpot — современный музыкальный плеер для тех, кто ценит удобство, эстетику и&nbsp;свободу слушать любимую музыку без рекламных пауз.</p>
         </div>
 
         <div class="bento">
           <!-- 01 -->
           <article class="feat f-noads" data-reveal data-spot>
             <span class="feat-num">01</span>
-            <h3>Никакой рекламы</h3>
-            <p>Музыка без рекламных пауз и&nbsp;отвлекающих баннеров.</p>
+            <h3 data-i="f1.h">Никакой рекламы</h3>
+            <p data-i="f1.p">Музыка без рекламных пауз и&nbsp;отвлекающих баннеров.</p>
             <div class="feat-vis" aria-hidden="true">
               <div class="noads-track">
                 <div class="bars l" data-bars="90"></div>
-                <div class="ad"><span>Реклама · 0:30</span></div>
+                <div class="ad"><span data-i="f1.ad">Реклама · 0:30</span></div>
                 <div class="bars r" data-bars="90"></div>
               </div>
               <div class="noads-meta">
                 <span class="zero">0</span>
-                <span>рекламных пауз.<br>Ни одной.</span>
+                <span data-i="f1.zero">рекламных пауз.<br>Ни одной.</span>
               </div>
             </div>
           </article>
@@ -179,21 +208,21 @@
           <!-- 02 -->
           <article class="feat f-ui" data-reveal data-spot style="--d:120ms">
             <span class="feat-num">02</span>
-            <h3>Продуманный интерфейс</h3>
-            <p>Минималистичный дизайн, удобная навигация и&nbsp;внимание к&nbsp;деталям.</p>
+            <h3 data-i="f2.h">Продуманный интерфейс</h3>
+            <p data-i="f2.p">Минималистичный дизайн, удобная навигация и&nbsp;внимание к&nbsp;деталям.</p>
             <div class="feat-vis">
               <div class="wire" aria-hidden="true">
-                <div class="part p-top" data-label="Поиск и шапка" style="--i:0"></div>
-                <div class="part p-side" data-label="Разделы" style="--i:1"></div>
+                <div class="part p-top" data-label="Поиск и шапка" data-i-attr="data-label:wire.1" style="--i:0"></div>
+                <div class="part p-side" data-label="Разделы" data-i-attr="data-label:wire.2" style="--i:1"></div>
                 <div class="part p-main" style="--i:2">
-                  <div class="part" data-label="Сейчас играет" style="--i:3"></div>
+                  <div class="part" data-label="Сейчас играет" data-i-attr="data-label:wire.3" style="--i:3"></div>
                   <div class="sub">
-                    <div class="part" data-label="Миксы" style="--i:4"></div>
-                    <div class="part" data-label="Волна" style="--i:5"></div>
-                    <div class="part" data-label="Альбомы" style="--i:6"></div>
+                    <div class="part" data-label="Миксы" data-i-attr="data-label:wire.4" style="--i:4"></div>
+                    <div class="part" data-label="Волна" data-i-attr="data-label:wire.5" style="--i:5"></div>
+                    <div class="part" data-label="Альбомы" data-i-attr="data-label:wire.6" style="--i:6"></div>
                   </div>
                 </div>
-                <div class="part p-player" data-label="Плеер" style="--i:7"></div>
+                <div class="part p-player" data-label="Плеер" data-i-attr="data-label:wire.7" style="--i:7"></div>
               </div>
             </div>
           </article>
@@ -201,16 +230,16 @@
           <!-- 03 -->
           <article class="feat f-lib" data-reveal data-spot>
             <span class="feat-num">03</span>
-            <h3>Твоя музыкальная библиотека</h3>
-            <p>Удобная организация любимых треков и&nbsp;плейлистов.</p>
+            <h3 data-i="f3.h">Твоя музыкальная библиотека</h3>
+            <p data-i="f3.p">Удобная организация любимых треков и&nbsp;плейлистов.</p>
             <div class="feat-vis">
               <div class="stack" aria-hidden="true">
-                <div class="pl pl-1"><div class="art art-b"></div><div class="name"><span>Ночная поездка<small>плейлист</small></span></div></div>
-                <div class="pl pl-3"><div class="art art-c"></div><div class="name"><span>Для учёбы<small>плейлист</small></span></div></div>
-                <div class="pl pl-2"><div class="art art-a"></div><div class="name"><span>Любимые треки<small>все лайки здесь</small></span></div></div>
+                <div class="pl pl-1"><div class="art art-b"></div><div class="name"><span data-i="lib.1">Ночная поездка<small>плейлист</small></span></div></div>
+                <div class="pl pl-3"><div class="art art-c"></div><div class="name"><span data-i="lib.2">Для учёбы<small>плейлист</small></span></div></div>
+                <div class="pl pl-2"><div class="art art-a"></div><div class="name"><span data-i="lib.3">Любимые треки<small>все лайки здесь</small></span></div></div>
               </div>
               <div class="lib-row">
-                <small>Названия плейлистов — для примера</small>
+                <small data-i="lib.note">Названия плейлистов — для примера</small>
                 <button class="like" type="button" aria-pressed="false">
                   <svg aria-hidden="true"><use href="#i-heart"/></svg>
                   <span data-like-text>В любимые</span>
@@ -223,28 +252,28 @@
           <article class="feat f-lyrics" data-reveal data-spot style="--d:120ms">
             <div class="bg-blobs" aria-hidden="true"></div>
             <span class="feat-num">04</span>
-            <h3>Атмосферные тексты песен</h3>
-            <p>Динамическое отображение текста с&nbsp;визуальными эффектами и&nbsp;акцентом на&nbsp;текущую строчку.</p>
+            <h3 data-i="f4.h">Атмосферные тексты песен</h3>
+            <p data-i="f4.p">Динамическое отображение текста с&nbsp;визуальными эффектами и&nbsp;акцентом на&nbsp;текущую строчку.</p>
             <div class="feat-vis">
               <div class="lyr" aria-hidden="true">
                 <div class="lyr-list" data-lyrics>
-                  <div class="lyr-line">Где-то между тишиной и светом</div>
-                  <div class="lyr-line">город снова учится дышать</div>
-                  <div class="lyr-line">я включаю то, что было где-то</div>
-                  <div class="lyr-line">и не нужно ничего искать</div>
-                  <div class="lyr-line">просто музыка — и больше ничего</div>
-                  <div class="lyr-line">только звук, и ночь, и мы вдвоём</div>
+                  <div class="lyr-line" data-i="lyr.1">Где-то между тишиной и светом</div>
+                  <div class="lyr-line" data-i="lyr.2">город снова учится дышать</div>
+                  <div class="lyr-line" data-i="lyr.3">я включаю то, что было где-то</div>
+                  <div class="lyr-line" data-i="lyr.4">и не нужно ничего искать</div>
+                  <div class="lyr-line" data-i="lyr.5">просто музыка — и больше ничего</div>
+                  <div class="lyr-line" data-i="lyr.6">только звук, и ночь, и мы вдвоём</div>
                 </div>
               </div>
-              <p class="feat-note">Демонстрация эффекта. Строчки написаны для сайта.</p>
+              <p class="feat-note" data-i="f4.note">Демонстрация эффекта. Строчки написаны для сайта.</p>
             </div>
           </article>
 
           <!-- 05 -->
           <article class="feat f-theme" data-reveal data-spot>
             <span class="feat-num">05</span>
-            <h3>Персонализация</h3>
-            <p>Настраивай внешний вид и&nbsp;оформление приложения под себя: 7&nbsp;тем, 5&nbsp;видов интерфейса, свой фон.</p>
+            <h3 data-i="f5.h">Персонализация</h3>
+            <p data-i="f5.p">Настраивай внешний вид и&nbsp;оформление приложения под себя: 7&nbsp;тем, 5&nbsp;видов интерфейса, свой фон.</p>
             <div class="feat-vis theme-vis">
               <div class="mini" data-mini aria-hidden="true">
                 <div class="cover"></div>
@@ -254,15 +283,15 @@
                   <div class="bar"><span class="play"></span><span class="prog"></span></div>
                 </div>
               </div>
-              <div class="chips" role="group" aria-label="Темы оформления (пример)" data-chips></div>
+              <div class="chips" role="group" aria-label="Темы оформления (пример)" data-i-attr="aria-label:f5.aria" data-chips></div>
             </div>
           </article>
 
           <!-- 06 -->
           <article class="feat f-rank" data-reveal data-spot style="--d:120ms">
             <span class="feat-num">06</span>
-            <h3>Музыка превращается в игру</h3>
-            <p>Достижения, опыт, уровни и&nbsp;ранги за&nbsp;музыкальную активность.</p>
+            <h3 data-i="f6.h">Музыка превращается в игру</h3>
+            <p data-i="f6.p">Достижения, опыт, уровни и&nbsp;ранги за&nbsp;музыкальную активность.</p>
             <div class="feat-vis" aria-hidden="true">
               <div class="rank-vis">
                 <div class="badge" data-badge>
@@ -279,14 +308,14 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="rank-name" data-rank-name><small>Ранг</small><span>Железо</span></div>
+                  <div class="rank-name" data-rank-name><small data-i="rank.label">Ранг</small><span>Железо</span></div>
                   <div class="xp"><i data-xp></i></div>
-                  <div class="xp-meta"><span data-xp-text>0 / 300 XP</span><span>до следующего ранга</span></div>
+                  <div class="xp-meta"><span data-xp-text>0 / 300 XP</span><span data-i="rank.next">до следующего ранга</span></div>
                 </div>
               </div>
               <div class="toast-zone" data-toasts></div>
               <div class="ladder" data-ladder></div>
-              <div class="ladder-names"><span>Железо</span><span>Золото</span><span>Алмаз</span><span>Претендент</span></div>
+              <div class="ladder-names"><span data-i="rank.0">Железо</span><span data-i="rank.3">Золото</span><span data-i="rank.5">Алмаз</span><span data-i="rank.8">Претендент</span></div>
             </div>
           </article>
         </div>
@@ -297,8 +326,8 @@
     <section class="section showcase" id="interface">
       <div class="section-glow" aria-hidden="true"></div>
       <div class="wrap">
-        <h2 class="sr-only">Интерфейс NedoSpot</h2>
-        <div class="tabs" role="tablist" aria-label="Виды интерфейса" data-reveal data-tabs>
+        <h2 class="sr-only" data-i="sc.h">Интерфейс NedoSpot</h2>
+        <div class="tabs" role="tablist" aria-label="Виды интерфейса" data-i-attr="aria-label:sc.tabs" data-reveal data-tabs>
           <span class="tab-ind" aria-hidden="true"></span>
         </div>
 
@@ -306,8 +335,8 @@
           <div class="stage-glow" aria-hidden="true"></div>
           <div class="win-back l" aria-hidden="true"><img alt="" data-back="l" loading="lazy" decoding="async"></div>
           <div class="win-back r" aria-hidden="true"><img alt="" data-back="r" loading="lazy" decoding="async"></div>
-          <button class="win-main" type="button" data-win aria-label="Открыть скриншот крупнее">
-            <span class="zoom-hint"><svg aria-hidden="true"><use href="#i-zoom"/></svg>Рассмотреть ближе</span>
+          <button class="win-main" type="button" data-win aria-label="Открыть скриншот крупнее" data-i-attr="aria-label:sc.open">
+            <span class="zoom-hint"><svg aria-hidden="true"><use href="#i-zoom"/></svg><span data-i="sc.zoom">Рассмотреть ближе</span></span>
           </button>
         </div>
 
@@ -316,27 +345,27 @@
           <h3 class="fade" data-cap-title></h3>
           <p class="fade" data-cap-text></p>
           <div class="view-ctrl">
-            <button class="round-btn" type="button" aria-label="Предыдущий вид" data-prev><svg aria-hidden="true"><use href="#i-left"/></svg></button>
-            <button class="round-btn" type="button" aria-label="Следующий вид" data-next><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <button class="round-btn" type="button" aria-label="Предыдущий вид" data-i-attr="aria-label:sc.prev" data-prev><svg aria-hidden="true"><use href="#i-left"/></svg></button>
+            <button class="round-btn" type="button" aria-label="Следующий вид" data-i-attr="aria-label:sc.next" data-next><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
           </div>
         </div>
-        <p class="shots-note">Настоящие снимки экрана NedoSpot. Обложки альбомов размыты.</p>
+        <p class="shots-note" data-i="sc.note">Настоящие снимки экрана NedoSpot. Обложки альбомов размыты.</p>
       </div>
     </section>
 
-    <div class="marquee" aria-label="Что умеет NedoSpot">
+    <div class="marquee" aria-label="Что умеет NedoSpot" data-i-attr="aria-label:mq.aria">
       <div class="mq-track" data-marquee>
         <div class="mq-group">
-          <span class="mq-item">Волна<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Миксы дня<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Живой текст<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Караоке<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Эквалайзер<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Таймер сна<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Комнаты с друзьями<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Dynamic Island<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Свои файлы<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
-          <span class="mq-item">Минуса<svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.1">Волна</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.2">Миксы дня</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.3">Живой текст</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.4">Караоке</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.5">Эквалайзер</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.6">Таймер сна</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.7">Комнаты с друзьями</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.8">Dynamic Island</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.9">Свои файлы</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
+          <span class="mq-item"><span data-i="mq.10">Минуса</span><svg aria-hidden="true"><use href="#i-flower"/></svg></span>
         </div>
       </div>
     </div>
@@ -344,9 +373,9 @@
     <!-- 4. Преимущества -->
     <section class="section manifesto" id="advantages">
       <div class="wrap">
-        <span class="label" data-reveal>03 — Преимущества</span>
-        <h2 class="mega split" data-split>Больше, чем <span class="soft">просто</span> плеер.</h2>
-        <p class="manifesto-text" data-words>Мы создаём пространство, в котором музыка становится частью повседневной жизни. Никакого визуального шума, ненужной сложности и навязчивой рекламы. Только музыка, удобство и удовольствие от использования.</p>
+        <span class="label" data-reveal data-i="m.label">03 — Преимущества</span>
+        <h2 class="mega split" data-split data-i="m.title">Больше, чем <span class="soft">просто</span> плеер.</h2>
+        <p class="manifesto-text" data-words data-i="m.text">Мы создаём пространство, в котором музыка становится частью повседневной жизни. Никакого визуального шума, ненужной сложности и навязчивой рекламы. Только музыка, удобство и удовольствие от использования.</p>
       </div>
     </section>
 
@@ -355,9 +384,9 @@
       <div class="section-glow" aria-hidden="true"></div>
       <div class="wrap faq-grid">
         <div class="faq-head">
-          <span class="label" data-reveal>04 — Вопросы</span>
-          <h2 class="title split" data-split>Частые вопросы.</h2>
-          <p class="lead" data-reveal style="--d:200ms">Не нашли ответ? Напишите в&nbsp;поддержку — отвечаем в&nbsp;течение 1&nbsp;рабочего дня.</p>
+          <span class="label" data-reveal data-i="q.label">04 — Вопросы</span>
+          <h2 class="title split" data-split data-i="q.title">Частые вопросы.</h2>
+          <p class="lead" data-reveal style="--d:200ms" data-i="q.lead">Не нашли ответ? Напишите в&nbsp;поддержку — отвечаем в&nbsp;течение 1&nbsp;рабочего дня.</p>
           <a class="faq-tg" data-reveal style="--d:300ms" href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">
             <svg aria-hidden="true"><use href="#i-tg"/></svg>
             <span>@NedoSpot_Support</span>
@@ -368,60 +397,60 @@
             <h3>
               <button class="faq-q" type="button" id="faq-q1" aria-expanded="false" aria-controls="faq-a1">
                 <span class="faq-n">01</span>
-                <span class="faq-t">Откуда берётся музыка в NedoSpot?</span>
+                <span class="faq-t" data-i="q.1">Откуда берётся музыка в NedoSpot?</span>
                 <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
               </button>
             </h3>
             <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">
-              <div class="faq-in"><p>Из SoundCloud и YouTube Music. Поиск идёт сразу по всем источникам.</p></div>
+              <div class="faq-in"><p data-i="a.1">Из SoundCloud и YouTube Music. Поиск идёт сразу по всем источникам.</p></div>
             </div>
           </div>
           <div class="faq-item" data-reveal style="--d:70ms">
             <h3>
               <button class="faq-q" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
                 <span class="faq-n">02</span>
-                <span class="faq-t">Можно ли пользоваться NedoSpot бесплатно?</span>
+                <span class="faq-t" data-i="q.2">Можно ли пользоваться NedoSpot бесплатно?</span>
                 <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
               </button>
             </h3>
             <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2">
-              <div class="faq-in"><p>Конечно. В NedoSpot нет рекламы, и пользоваться им можно бесплатно. VIP-подписка помогает поддерживать проект и даёт дополнительные полезные функции.</p></div>
+              <div class="faq-in"><p data-i="a.2">Конечно. В NedoSpot нет рекламы, и пользоваться им можно бесплатно. VIP-подписка помогает поддерживать проект и даёт дополнительные полезные функции.</p></div>
             </div>
           </div>
           <div class="faq-item" data-reveal style="--d:140ms">
             <h3>
               <button class="faq-q" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
                 <span class="faq-n">03</span>
-                <span class="faq-t">Что такое NedoSpot VIP?</span>
+                <span class="faq-t" data-i="q.3">Что такое NedoSpot VIP?</span>
                 <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
               </button>
             </h3>
             <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3">
-              <div class="faq-in"><p>Подписка, которая даёт дополнительные полезные функции.</p></div>
+              <div class="faq-in"><p data-i="a.3">Подписка, которая даёт дополнительные полезные функции.</p></div>
             </div>
           </div>
           <div class="faq-item" data-reveal style="--d:210ms">
             <h3>
               <button class="faq-q" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
                 <span class="faq-n">04</span>
-                <span class="faq-t">Как сообщить об ошибке или предложить новую функцию?</span>
+                <span class="faq-t" data-i="q.4">Как сообщить об ошибке или предложить новую функцию?</span>
                 <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
               </button>
             </h3>
             <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4">
-              <div class="faq-in"><p>Напишите нам в Telegram — <a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">@NedoSpot_Support</a>. Подробнее — на странице <a href="/support">«Контакты поддержки»</a>.</p></div>
+              <div class="faq-in"><p data-i="a.4">Напишите нам в Telegram — <a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">@NedoSpot_Support</a>. Подробнее — на странице <a href="/support">«Контакты поддержки»</a>.</p></div>
             </div>
           </div>
           <div class="faq-item" data-reveal style="--d:280ms">
             <h3>
               <button class="faq-q" type="button" id="faq-q5" aria-expanded="false" aria-controls="faq-a5">
                 <span class="faq-n">05</span>
-                <span class="faq-t">На каких системах работает NedoSpot?</span>
+                <span class="faq-t" data-i="q.5">На каких системах работает NedoSpot?</span>
                 <span class="faq-ic" aria-hidden="true"><svg><use href="#i-plus"/></svg></span>
               </button>
             </h3>
             <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5">
-              <div class="faq-in"><p>Сейчас NedoSpot работает на Windows 10 и 11. Скоро выйдут версии для Linux и Android.</p></div>
+              <div class="faq-in"><p data-i="a.5">Сейчас NedoSpot работает на Windows 10 и 11. Скоро выйдут версии для Linux и Android.</p></div>
             </div>
           </div>
         </div>
@@ -433,18 +462,18 @@
       <canvas class="install-canvas" aria-hidden="true"></canvas>
       <div class="install-shade" aria-hidden="true"></div>
       <div class="install-inner">
-        <span class="label" data-reveal>05 — Установка</span>
-        <h2 class="split" data-split>Твоя следующая любимая привычка.</h2>
-        <p class="sub" data-reveal style="--d:250ms">Открой NedoSpot и&nbsp;почувствуй музыку по-новому.</p>
+        <span class="label" data-reveal data-i="i.label">05 — Установка</span>
+        <h2 class="split" data-split data-i="i.title">Твоя следующая любимая привычка.</h2>
+        <p class="sub" data-reveal style="--d:250ms" data-i="i.sub">Открой NedoSpot и&nbsp;почувствуй музыку по-новому.</p>
         <div class="cta-row" data-reveal style="--d:400ms">
           <a class="btn btn-primary btn-lg" data-release href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases/latest" target="_blank" rel="noopener" data-magnetic>
-            Скачать NedoSpot
+            <span data-i="btn.dl">Скачать NedoSpot</span>
             <span class="ico" aria-hidden="true"><svg><use href="#i-down"/></svg><svg><use href="#i-down"/></svg></span>
           </a>
         </div>
         <p class="platform" data-reveal style="--d:550ms">
           <svg aria-hidden="true"><use href="#i-win"/></svg>
-          <span>Для Windows 10 и 11 (64-бит) · Linux — скоро · обновляется сам · <a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener">все версии</a></span>
+          <span data-i="i.plat">Для Windows 10 и 11 (64-бит) · Linux — скоро · обновляется сам · <a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener">все версии</a></span>
         </p>
       </div>
     </section>
@@ -456,47 +485,47 @@
         <div class="foot-head">
           <div class="foot-about">
             <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
-            <p>Музыка. Ничего лишнего.</p>
+            <p data-i="foot.slogan">Музыка. Ничего лишнего.</p>
           </div>
           <div class="foot-actions">
-            <a class="foot-btn" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg><span>Telegram-канал</span></a>
-            <a class="foot-btn" href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Поддержка</span></a>
-            <a class="foot-up" href="#top" aria-label="Наверх" title="Наверх"><svg aria-hidden="true"><use href="#i-up"/></svg></a>
+            <a class="foot-btn" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg><span data-i="foot.tg">Telegram-канал</span></a>
+            <a class="foot-btn" href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-chat"/></svg><span data-i="foot.support">Поддержка</span></a>
+            <a class="foot-up" href="#top" aria-label="Наверх" title="Наверх" data-i-attr="aria-label:foot.up;title:foot.up"><svg aria-hidden="true"><use href="#i-up"/></svg></a>
           </div>
         </div>
         <div class="foot-lists">
-          <nav class="fpl fpl-a" aria-label="Продукт">
+          <nav class="fpl fpl-a" aria-label="Продукт" data-i-attr="aria-label:fpl.a">
             <div class="fpl-head">
               <span class="fpl-cover" aria-hidden="true"><svg><use href="#i-logo"/></svg></span>
-              <span class="fpl-info"><small>Плейлист</small><b>Продукт</b><em>4 трека</em></span>
+              <span class="fpl-info"><small data-i="fpl.pl">Плейлист</small><b data-i="fpl.a">Продукт</b><em data-i="fpl.n4">4 трека</em></span>
             </div>
             <ol class="fpl-list">
-              <li><a href="#download"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Скачать</span><span class="fpl-d"></span></a></li>
-              <li><a href="#features"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Возможности</span><span class="fpl-d"></span></a></li>
-              <li><a href="#interface"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Интерфейс</span><span class="fpl-d"></span></a></li>
-              <li><a href="#faq"><span class="fpl-n"><i>04</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Вопросы</span><span class="fpl-d"></span></a></li>
+              <li><a href="#download"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="nav.download">Скачать</span><span class="fpl-d"></span></a></li>
+              <li><a href="#features"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="nav.features">Возможности</span><span class="fpl-d"></span></a></li>
+              <li><a href="#interface"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="nav.interface">Интерфейс</span><span class="fpl-d"></span></a></li>
+              <li><a href="#faq"><span class="fpl-n"><i>04</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="nav.faq">Вопросы</span><span class="fpl-d"></span></a></li>
             </ol>
           </nav>
-          <nav class="fpl fpl-b" aria-label="Документы">
+          <nav class="fpl fpl-b" aria-label="Документы" data-i-attr="aria-label:nav.docs">
             <div class="fpl-head">
               <span class="fpl-cover" aria-hidden="true"><svg><use href="#i-doc"/></svg></span>
-              <span class="fpl-info"><small>Плейлист</small><b>Документы</b><em>3 трека</em></span>
+              <span class="fpl-info"><small data-i="fpl.pl">Плейлист</small><b data-i="nav.docs">Документы</b><em data-i="fpl.n3">3 трека</em></span>
             </div>
             <ol class="fpl-list">
-              <li><a href="/terms"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Пользовательское соглашение</span><span class="fpl-d"></span></a></li>
-              <li><a href="/privacy"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Политика конфиденциальности</span><span class="fpl-d"></span></a></li>
-              <li><a href="/support"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Контакты поддержки</span><span class="fpl-d"></span></a></li>
+              <li><a href="/terms"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="doc.terms">Пользовательское соглашение</span><span class="fpl-d"></span></a></li>
+              <li><a href="/privacy"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="doc.privacy">Политика конфиденциальности</span><span class="fpl-d"></span></a></li>
+              <li><a href="/support"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="foot.supc">Контакты поддержки</span><span class="fpl-d"></span></a></li>
             </ol>
           </nav>
-          <nav class="fpl fpl-c" aria-label="Сообщество">
+          <nav class="fpl fpl-c" aria-label="Сообщество" data-i-attr="aria-label:fpl.c">
             <div class="fpl-head">
               <span class="fpl-cover" aria-hidden="true"><svg><use href="#i-tg"/></svg></span>
-              <span class="fpl-info"><small>Плейлист</small><b>Сообщество</b><em>3 трека</em></span>
+              <span class="fpl-info"><small data-i="fpl.pl">Плейлист</small><b data-i="fpl.c">Сообщество</b><em data-i="fpl.n3">3 трека</em></span>
             </div>
             <ol class="fpl-list">
-              <li><a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Telegram-канал</span><span class="fpl-d">@NedoSpotApp</span></a></li>
-              <li><a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Поддержка</span><span class="fpl-d">@NedoSpot_Support</span></a></li>
-              <li><a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Все версии</span><span class="fpl-d">GitHub</span></a></li>
+              <li><a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="foot.tg">Telegram-канал</span><span class="fpl-d">@NedoSpotApp</span></a></li>
+              <li><a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="foot.support">Поддержка</span><span class="fpl-d">@NedoSpot_Support</span></a></li>
+              <li><a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t" data-i="foot.all">Все версии</span><span class="fpl-d">GitHub</span></a></li>
             </ol>
           </nav>
         </div>
@@ -513,18 +542,19 @@
   </footer>
 
   <!-- Просмотр скриншота крупно -->
-  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Скриншот NedoSpot" data-lightbox>
-    <button class="round-btn lb-close" type="button" aria-label="Закрыть" data-lb-close><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Скриншот NedoSpot" data-i-attr="aria-label:lb.aria" data-lightbox>
+    <button class="round-btn lb-close" type="button" aria-label="Закрыть" data-i-attr="aria-label:lb.close" data-lb-close><svg aria-hidden="true"><use href="#i-close"/></svg></button>
     <div class="lb-frame" data-lb-frame><img alt="" data-lb-img></div>
     <div class="lb-bar">
-      <button class="round-btn" type="button" aria-label="Предыдущий" data-lb-prev><svg aria-hidden="true"><use href="#i-left"/></svg></button>
+      <button class="round-btn" type="button" aria-label="Предыдущий" data-i-attr="aria-label:lb.prev" data-lb-prev><svg aria-hidden="true"><use href="#i-left"/></svg></button>
       <span data-lb-title></span>
-      <button class="round-btn" type="button" aria-label="Следующий" data-lb-next><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
-      <span class="lb-hint">Нажми на снимок, чтобы приблизить</span>
+      <button class="round-btn" type="button" aria-label="Следующий" data-i-attr="aria-label:lb.next" data-lb-next><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <span class="lb-hint" data-i="lb.hint">Нажми на снимок, чтобы приблизить</span>
     </div>
   </div>
 
   <script src="js/flowers.js?v=5"></script>
-  <script src="js/main.js?v=8"></script>
+  <script src="js/i18n.js?v=1"></script>
+  <script src="js/main.js?v=9"></script>
 </body>
 </html>

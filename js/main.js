@@ -14,6 +14,11 @@
   var RELEASES = 'https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases';
   var RELEASES_API = 'https://api.github.com/repos/kasenkovdaniil0-pixel/NedoSpot-releases/releases/latest';
 
+  // Перевод (js/i18n.js): T('ключ') — строка на текущем языке; onLang — что обновить при смене языка
+  var I18N = window.NSi18n || { t: function (k) { return k; }, lang: function () { return 'ru'; }, set: function () {}, on: function () {} };
+  var T = I18N.t;
+  var onLang = I18N.on;
+
   // Вызывает onEnter/onLeave, когда элемент появляется/пропадает с экрана
   function watch(el, onEnter, onLeave, margin) {
     if (!el) return;
@@ -114,6 +119,8 @@
     walk(el);
   }
   $$('[data-split]').forEach(splitWords);
+  // после смены языка текст заголовков новый — снова разбиваем на слова (класс .in остаётся)
+  onLang(function () { $$('[data-split]').forEach(splitWords); });
 
   /* ---------- Появление при прокрутке ---------- */
 
@@ -147,7 +154,7 @@
   var menu = $('#mobile-menu');
   function setMenu(open) {
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    burger.setAttribute('aria-label', T(open ? 'menu.close' : 'menu.open'));
     menu.classList.toggle('open', open);
     menu.setAttribute('aria-hidden', open ? 'false' : 'true');
     doc.body.style.overflow = open ? 'hidden' : '';
@@ -156,7 +163,9 @@
     burger.addEventListener('click', function () { setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
     $$('a', menu).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false); });
-    window.addEventListener('resize', function () { if (window.innerWidth > 820 && menu.classList.contains('open')) setMenu(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1160 && menu.classList.contains('open')) setMenu(false); });
+    burger.setAttribute('aria-label', T('menu.open'));
+    onLang(function () { burger.setAttribute('aria-label', T(menu.classList.contains('open') ? 'menu.close' : 'menu.open')); });
   }
 
   // активный пункт меню
@@ -246,11 +255,15 @@
 
   var like = $('.like');
   if (like) {
+    var likeLabel = function () {
+      $('[data-like-text]', like).textContent = T(like.getAttribute('aria-pressed') === 'true' ? 'like.on' : 'like.off');
+    };
     like.addEventListener('click', function () {
-      var on = like.getAttribute('aria-pressed') !== 'true';
-      like.setAttribute('aria-pressed', on ? 'true' : 'false');
-      $('[data-like-text]', like).textContent = on ? 'В любимых' : 'В любимые';
+      like.setAttribute('aria-pressed', like.getAttribute('aria-pressed') !== 'true' ? 'true' : 'false');
+      likeLabel();
     });
+    likeLabel();
+    onLang(likeLabel);
   }
 
   /* ---------- 04. Живой текст ---------- */
@@ -258,21 +271,38 @@
   var lyrList = $('[data-lyrics]');
   if (lyrList) {
     var lines = $$('.lyr-line', lyrList);
-    lines.forEach(function (ln) {
-      var words = ln.textContent.split(' ');
-      ln.textContent = '';
-      words.forEach(function (w, i) {
-        var s = doc.createElement('span');
-        s.className = 'wd';
-        s.textContent = w;
-        ln.appendChild(s);
-        if (i < words.length - 1) ln.appendChild(doc.createTextNode(' '));
+    var splitLyrics = function () {
+      lines.forEach(function (ln) {
+        var words = ln.textContent.split(' ');
+        ln.textContent = '';
+        words.forEach(function (w, i) {
+          var s = doc.createElement('span');
+          s.className = 'wd';
+          s.textContent = w;
+          ln.appendChild(s);
+          if (i < words.length - 1) ln.appendChild(doc.createTextNode(' '));
+        });
       });
-    });
+    };
+    splitLyrics();
     var cur = -1;
     var wordTimers = [];
     var lyrBox = lyrList.parentElement;
     var LINE_MS = 3200;
+    var placeLine = function () {
+      var line = lines[cur];
+      var y = line.offsetTop - (lyrBox.clientHeight * 0.46 - line.offsetHeight / 2);
+      lyrList.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
+    };
+    // новый язык: строки уже другие — разбиваем заново, текущую сразу подсвечиваем
+    onLang(function () {
+      wordTimers.forEach(clearTimeout);
+      wordTimers = [];
+      splitLyrics();
+      if (cur < 0) return;
+      $$('.wd', lines[cur]).forEach(function (w) { w.classList.add('lit'); });
+      placeLine();
+    });
     var showLine = function () {
       wordTimers.forEach(clearTimeout);
       wordTimers = [];
@@ -282,9 +312,8 @@
         ln.classList.toggle('done', i < cur);
         if (i !== cur) $$('.wd', ln).forEach(function (w) { w.classList.remove('lit'); });
       });
+      placeLine();
       var line = lines[cur];
-      var y = line.offsetTop - (lyrBox.clientHeight * 0.46 - line.offsetHeight / 2);
-      lyrList.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
       var ws = $$('.wd', line);
       var step = (LINE_MS * 0.7) / ws.length;
       ws.forEach(function (w, i) {
@@ -298,10 +327,10 @@
   /* ---------- 05. Темы ---------- */
 
   var THEMES = [
-    { n: 'Стекло', sw: 'linear-gradient(135deg,#f4efe6,#8e949e)', v: { bg: 'linear-gradient(135deg,#222226,#0c0c0e)', card: 'rgba(255,255,255,.07)', line: 'rgba(255,255,255,.14)', acc: '#f4efe6', acc2: '#8e949e', text: 'rgba(255,255,255,.85)' } },
-    { n: 'Неон', sw: 'linear-gradient(135deg,#ff4fd8,#7a3cff)', v: { bg: 'radial-gradient(120% 100% at 15% 0%,#3b0d46,#12051a 65%)', card: 'rgba(255,79,216,.08)', line: 'rgba(255,79,216,.38)', acc: '#ff4fd8', acc2: '#7a3cff', text: '#ffe6fb' } },
-    { n: 'Аврора', sw: 'linear-gradient(135deg,#8be3d6,#c08cff)', v: { bg: 'linear-gradient(135deg,#10302f,#1d1540 60%,#0e1020)', card: 'rgba(255,255,255,.06)', line: 'rgba(160,230,225,.26)', acc: '#8be3d6', acc2: '#c08cff', text: '#effffc' } },
-    { n: 'Бумага', sw: '#efe9dc', v: { bg: '#efe9dc', card: 'rgba(31,27,22,.06)', line: 'rgba(31,27,22,.18)', acc: '#1f1b16', acc2: '#8a7f70', text: '#1f1b16' } }
+    { n: 'theme.glass', sw: 'linear-gradient(135deg,#f4efe6,#8e949e)', v: { bg: 'linear-gradient(135deg,#222226,#0c0c0e)', card: 'rgba(255,255,255,.07)', line: 'rgba(255,255,255,.14)', acc: '#f4efe6', acc2: '#8e949e', text: 'rgba(255,255,255,.85)' } },
+    { n: 'theme.neon', sw: 'linear-gradient(135deg,#ff4fd8,#7a3cff)', v: { bg: 'radial-gradient(120% 100% at 15% 0%,#3b0d46,#12051a 65%)', card: 'rgba(255,79,216,.08)', line: 'rgba(255,79,216,.38)', acc: '#ff4fd8', acc2: '#7a3cff', text: '#ffe6fb' } },
+    { n: 'theme.aurora', sw: 'linear-gradient(135deg,#8be3d6,#c08cff)', v: { bg: 'linear-gradient(135deg,#10302f,#1d1540 60%,#0e1020)', card: 'rgba(255,255,255,.06)', line: 'rgba(160,230,225,.26)', acc: '#8be3d6', acc2: '#c08cff', text: '#effffc' } },
+    { n: 'theme.paper', sw: '#efe9dc', v: { bg: '#efe9dc', card: 'rgba(31,27,22,.06)', line: 'rgba(31,27,22,.18)', acc: '#1f1b16', acc2: '#8a7f70', text: '#1f1b16' } }
   ];
   var mini = $('[data-mini]');
   var chipsBox = $('[data-chips]');
@@ -313,7 +342,7 @@
       b.type = 'button';
       b.className = 'chip';
       b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-      b.innerHTML = '<i style="--sw:' + t.sw + '"></i>' + t.n;
+      b.innerHTML = '<i style="--sw:' + t.sw + '"></i><span></span>';
       b.addEventListener('click', function () { userPicked = true; applyTheme(i); });
       chipsBox.appendChild(b);
       return b;
@@ -321,8 +350,13 @@
     var more = doc.createElement('span');
     more.className = 'chip';
     more.style.boxShadow = 'none';
-    more.textContent = '+ ещё 3 темы';
     chipsBox.appendChild(more);
+    var chipLabels = function () {
+      chips.forEach(function (c, k) { $('span', c).textContent = T(THEMES[k].n); });
+      more.textContent = T('theme.more');
+    };
+    chipLabels();
+    onLang(chipLabels);
     var applyTheme = function (i) {
       themeIdx = i;
       var v = THEMES[i].v;
@@ -344,20 +378,20 @@
   /* ---------- 06. Ранги ---------- */
 
   var RANKS = [
-    { n: 'Железо', c: '#9aa0aa', g: 'rgba(200,205,215,.28)' },
-    { n: 'Бронза', c: '#c99a7a', g: 'rgba(214,160,120,.3)' },
-    { n: 'Серебро', c: '#d5dae2', g: 'rgba(225,230,240,.3)' },
-    { n: 'Золото', c: '#ecd29a', g: 'rgba(240,210,140,.32)' },
-    { n: 'Платина', c: '#bfe0e6', g: 'rgba(190,225,235,.3)' },
-    { n: 'Алмаз', c: '#bcd2fb', g: 'rgba(180,205,255,.34)' },
-    { n: 'Мастер', c: '#d6c3fa', g: 'rgba(210,190,255,.34)' },
-    { n: 'Грандмастер', c: '#f5b9cb', g: 'rgba(245,185,205,.34)' },
-    { n: 'Претендент', c: '#fff1c9', g: 'rgba(255,240,200,.4)' }
+    { n: 'rank.0', c: '#9aa0aa', g: 'rgba(200,205,215,.28)' },
+    { n: 'rank.1', c: '#c99a7a', g: 'rgba(214,160,120,.3)' },
+    { n: 'rank.2', c: '#d5dae2', g: 'rgba(225,230,240,.3)' },
+    { n: 'rank.3', c: '#ecd29a', g: 'rgba(240,210,140,.32)' },
+    { n: 'rank.4', c: '#bfe0e6', g: 'rgba(190,225,235,.3)' },
+    { n: 'rank.5', c: '#bcd2fb', g: 'rgba(180,205,255,.34)' },
+    { n: 'rank.6', c: '#d6c3fa', g: 'rgba(210,190,255,.34)' },
+    { n: 'rank.7', c: '#f5b9cb', g: 'rgba(245,185,205,.34)' },
+    { n: 'rank.8', c: '#fff1c9', g: 'rgba(255,240,200,.4)' }
   ];
   var QUESTS = [
-    { xp: 35, t: 'Задание: Создать плейлист' },
-    { xp: 20, t: 'Задание: 3 трека в избранное' },
-    { xp: 10, t: 'Достижение: Первый звук' }
+    { xp: 35, t: 'quest.1' },
+    { xp: 20, t: 'quest.2' },
+    { xp: 10, t: 'quest.3' }
   ];
   var badge = $('[data-badge]');
   if (badge) {
@@ -373,18 +407,19 @@
       var r = RANKS[rank];
       hex.setAttribute('fill', r.c);
       badge.style.setProperty('--rk-glow', r.g);
-      rankName.textContent = r.n;
+      rankName.textContent = T(r.n);
       rungs.forEach(function (el, i) { el.classList.toggle('on', i <= rank); });
       xpBar.style.width = fill + '%';
-      xpText.textContent = 'опыт: ' + xpTotal;
+      xpText.textContent = T('rank.xp') + xpTotal;
     };
     paint();
+    onLang(function () { paint(); toasts.textContent = ''; });
     loopWhileVisible(badge, function () {
       var quest = QUESTS[q++ % QUESTS.length];
       xpTotal += quest.xp;
       var t = doc.createElement('span');
       t.className = 'xp-toast';
-      t.innerHTML = '<b>+' + quest.xp + '</b> ' + quest.t;
+      t.innerHTML = '<b>+' + quest.xp + '</b> ' + T(quest.t);
       toasts.textContent = '';
       toasts.appendChild(t);
       fill += 22 + Math.random() * 16;
@@ -411,13 +446,14 @@
 
   /* ---------- Витрина интерфейса ---------- */
 
+  // подписи — в js/i18n.js (ключи v.N.tab / v.N.title / v.N.text)
   var VIEWS = [
-    { tab: 'Основной', title: 'Основной вид', text: 'Обложка, часы с календарём и пульт — слева. Подборки, «Волна» и миксы дня — справа.', src: 'assets/shots/main.webp', w: 1920, h: 1080 },
-    { tab: 'Студия', title: 'Студия', text: 'Разделы и плейлисты слева, виджеты сверху, плеер на всю ширину внизу.', src: 'assets/shots/studio.webp', w: 1920, h: 1080 },
-    { tab: 'Проигрыватель', title: 'Проигрыватель', text: 'Пластинка с тонармом, крутилка громкости и разделы, разложенные по кругу.', src: 'assets/shots/deck.webp', w: 1920, h: 1080 },
-    { tab: 'Ранги', title: 'Ранги', text: 'Опыт за музыку, задания, достижения, 9 рангов и общий рейтинг.', src: 'assets/shots/ranked.webp', w: 1440, h: 1000 },
-    { tab: 'Аврора', title: 'Тема «Аврора»', text: 'Одна из 7 тем оформления. Ещё есть Стекло, Неон, Терминал, Брутализм, Винил и Бумага.', src: 'assets/shots/aurora.webp', w: 1440, h: 1000 },
-    { tab: 'Неон', title: 'Тема «Неон»', text: 'Тема меняет цвета всего окна — от кнопок до часов и календаря.', src: 'assets/shots/neon.webp', w: 1440, h: 1000 }
+    { k: 'v.0', src: 'assets/shots/main.webp', w: 1920, h: 1080 },
+    { k: 'v.1', src: 'assets/shots/studio.webp', w: 1920, h: 1080 },
+    { k: 'v.2', src: 'assets/shots/deck.webp', w: 1920, h: 1080 },
+    { k: 'v.3', src: 'assets/shots/ranked.webp', w: 1440, h: 1000 },
+    { k: 'v.4', src: 'assets/shots/aurora.webp', w: 1440, h: 1000 },
+    { k: 'v.5', src: 'assets/shots/neon.webp', w: 1440, h: 1000 }
   ];
 
   var tabsBox = $('[data-tabs]');
@@ -437,7 +473,7 @@
     var imgs = VIEWS.map(function (v, i) {
       var im = doc.createElement('img');
       im.src = v.src;
-      im.alt = 'NedoSpot — ' + v.title;
+      im.alt = 'NedoSpot — ' + T(v.k + '.title');
       im.width = v.w;
       im.height = v.h;
       im.decoding = 'async';
@@ -451,7 +487,7 @@
       b.className = 'tab';
       b.setAttribute('role', 'tab');
       b.setAttribute('aria-selected', 'false');
-      b.textContent = v.tab;
+      b.textContent = T(v.k + '.tab');
       b.addEventListener('click', function () { autoplay = false; show(i); });
       tabsBox.appendChild(b);
       return b;
@@ -496,8 +532,8 @@
       var v = VIEWS[i];
       var fill = function () {
         capNum.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(VIEWS.length).padStart(2, '0');
-        capTitle.textContent = v.title;
-        capText.textContent = v.text;
+        capTitle.textContent = T(v.k + '.title');
+        capText.textContent = T(v.k + '.text');
         cap.classList.remove('swap');
       };
       if (first) fill();
@@ -573,10 +609,10 @@
       var v = VIEWS[lbIdx];
       lbFrame.classList.remove('zoomed');
       lbImg.src = v.src;
-      lbImg.alt = 'NedoSpot — ' + v.title;
+      lbImg.alt = 'NedoSpot — ' + T(v.k + '.title');
       lbImg.width = v.w;
       lbImg.height = v.h;
-      lbTitle.textContent = v.title;
+      lbTitle.textContent = T(v.k + '.title');
     };
     var openLb = function () {
       lastFocus = doc.activeElement;
@@ -592,6 +628,14 @@
       doc.body.style.overflow = '';
       if (lastFocus) lastFocus.focus({ preventScroll: true });
     };
+    onLang(function () {
+      tabs.forEach(function (t, k) { t.textContent = T(VIEWS[k].k + '.tab'); });
+      imgs.forEach(function (im, k) { im.alt = 'NedoSpot — ' + T(VIEWS[k].k + '.title'); });
+      capTitle.textContent = T(VIEWS[active].k + '.title');
+      capText.textContent = T(VIEWS[active].k + '.text');
+      moveInd();
+      if (lbOpen) lbShow(lbIdx);
+    });
     win.addEventListener('click', openLb);
     lbClose.addEventListener('click', closeLb);
     $('[data-lb-prev]').addEventListener('click', function () { lbShow(lbIdx - 1); });
@@ -660,7 +704,7 @@
   var heroInner = $('[data-hero-parallax]');
   var mText = $('[data-words]');
   var mWords = [];
-  if (mText) {
+  var splitManifesto = function () {
     var words = mText.textContent.trim().split(/\s+/);
     mText.textContent = '';
     words.forEach(function (w, i) {
@@ -672,7 +716,8 @@
     });
     mWords = $$('.mw', mText);
     if (reduced) mWords.forEach(function (w) { w.classList.add('on'); });
-  }
+  };
+  if (mText) splitManifesto();
 
   var ticking = false;
   var lastLit = -1;
@@ -702,11 +747,19 @@
   }, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();
+  if (mText) onLang(function () { splitManifesto(); lastLit = -1; onScroll(); });
 
   /* ---------- Ссылка на установщик последней версии ---------- */
 
   // Кнопки ведут на страницу последнего релиза на GitHub. Если GitHub отвечает —
   // ставим прямую ссылку на установщик .exe и показываем номер версии.
+  var relVer = '';
+  var renderPlat = function () {
+    var plat = $('.platform span');
+    if (!relVer || !plat) return;
+    plat.innerHTML = T('plat.ver') + relVer + T('plat.rest') + '<a href="' + RELEASES + '" target="_blank" rel="noopener">' + T('plat.all') + '</a>';
+  };
+  onLang(renderPlat); // i18n уже поставил строку без версии — дописываем версию заново
   var releaseLinks = $$('[data-release]');
   if (releaseLinks.length && window.fetch) {
     var ctrl = 'AbortController' in window ? new AbortController() : null;
@@ -723,11 +776,8 @@
           a.removeAttribute('target');
           a.title = exe.name;
         });
-        var ver = (data.tag_name || '').replace(/^v/, '');
-        var plat = $('.platform span');
-        if (ver && plat) {
-          plat.innerHTML = 'Версия ' + ver.replace(/[^0-9a-z.\-]/gi, '') + ' · Windows 10 и 11 (64-бит) · Linux — скоро · обновляется сам · <a href="' + RELEASES + '" target="_blank" rel="noopener">все версии</a>';
-        }
+        relVer = (data.tag_name || '').replace(/^v/, '').replace(/[^0-9a-z.\-]/gi, '');
+        renderPlat();
       })
       .catch(function () { clearTimeout(timer); });
   }
@@ -757,6 +807,39 @@
     docsBox.addEventListener('focusout', function (e) { if (!docsBox.contains(e.relatedTarget)) setDocs(false); });
     doc.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && docsBox.classList.contains('open')) { setDocs(false); docsBtn.focus(); }
+    });
+  }
+
+  /* ---------- Язык: RU / EN ---------- */
+
+  var langBox = $('[data-lang-box]');
+  if (langBox) {
+    var langBtn = $('.nlang-btn', langBox);
+    var openLang = function (open) {
+      langBox.classList.toggle('open', open);
+      langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    var switchLang = function (l) {
+      openLang(false);
+      if (l === I18N.lang()) return;
+      if (reduced) { I18N.set(l); return; }
+      // текст коротко гаснет, меняется и снова появляется
+      root.classList.add('lang-swap');
+      setTimeout(function () {
+        I18N.set(l);
+        setTimeout(function () { root.classList.remove('lang-swap'); }, 30);
+      }, 180);
+    };
+    langBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      openLang(!langBox.classList.contains('open'));
+    });
+    $$('[data-set-lang]', langBox).forEach(function (b) {
+      b.addEventListener('click', function () { switchLang(b.getAttribute('data-set-lang')); });
+    });
+    doc.addEventListener('click', function (e) { if (!langBox.contains(e.target)) openLang(false); });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && langBox.classList.contains('open')) { openLang(false); langBtn.focus(); }
     });
   }
 
