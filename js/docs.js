@@ -8,7 +8,7 @@
 
   function store(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
 
-  /* ---------------- Тема: круг расходится от кнопки ---------------- */
+  /* ---------------- Тема: новая опускается сверху вниз ---------------- */
   function applyTheme(t) {
     if (t === 'light') root.setAttribute('data-theme', 'light');
     else root.removeAttribute('data-theme');
@@ -40,19 +40,9 @@
         return;
       }
 
-      var r = btn.getBoundingClientRect();
-      var x = r.left + r.width / 2;
-      var y = r.top + r.height / 2;
-      var R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-
+      // новая тема опускается сверху вниз — сама анимация в docs.css (theme-drop)
       root.classList.add('theme-vt');
       var vt = document.startViewTransition(function () { applyTheme(next); });
-      vt.ready.then(function () {
-        root.animate(
-          { clipPath: ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + R + 'px at ' + x + 'px ' + y + 'px)'] },
-          { duration: 560, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' }
-        );
-      }).catch(function () {});
       vt.finished.catch(function () {}).then(function () { root.classList.remove('theme-vt'); });
     });
   });
