@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="assets/icon.png">
   <link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
 </head>
 <body>
@@ -58,6 +58,11 @@
       <path d="M12 7v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
     </symbol>
     <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.4 3.6c.6-.2 1.2.3 1 1l-3.2 15c-.2.8-1 1.1-1.7.7l-4.8-3.6-2.4 2.3c-.3.3-.8.2-1-.2l-1.7-5.4-4.8-1.6c-.8-.3-.8-1.3 0-1.6l18.6-6.6Zm-3.6 4L9 13.2l.9 3.8.3-2.8 7.9-6.2c.3-.2 0-.6-.3-.4Z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5.5c0 4.4 3 8 7 9.5 4-1.5 7-5.1 7-9.5V6l-7-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></g></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></g></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.6v12.8c0 .8.9 1.3 1.6.9l10-6.4c.6-.4.6-1.4 0-1.8l-10-6.4C8.9 4.3 8 4.8 8 5.6Z"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m-6 6 6-6 6 6"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-win" viewBox="0 0 24 24">
       <rect x="3" y="4" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -77,6 +82,14 @@
         <a href="#interface">Интерфейс</a>
         <a href="#advantages">Преимущества</a>
         <a href="#faq">Вопросы</a>
+        <div class="nav-docs" data-docs>
+          <button class="nav-docs-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="nav-docs-menu">Документы<svg aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <div class="nav-docs-menu" id="nav-docs-menu" role="menu" aria-label="Документы">
+            <a href="/terms" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-doc"/></svg></span><span class="nd-tx"><b>Пользовательское соглашение</b><small>Правила пользования NedoSpot</small></span></a>
+            <a href="/privacy" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-shield"/></svg></span><span class="nd-tx"><b>Политика конфиденциальности</b><small>Какие данные мы храним и зачем</small></span></a>
+            <a href="/support" role="menuitem"><span class="nd-ic" aria-hidden="true"><svg><use href="#i-chat"/></svg></span><span class="nd-tx"><b>Поддержка</b><small>@NedoSpot_Support · ответ за 1 рабочий день</small></span></a>
+          </div>
+        </div>
       </nav>
       <div class="nav-right">
         <a class="nav-cta" href="#download">
@@ -96,6 +109,12 @@
     <a href="#advantages" style="--i:2">Преимущества</a>
     <a href="#faq" style="--i:3">Вопросы</a>
     <a href="#download" style="--i:4">Скачать</a>
+    <div class="mm-docs" style="--i:5">
+      <span>Документы</span>
+      <a href="/terms">Соглашение</a>
+      <a href="/privacy">Конфиденциальность</a>
+      <a href="/support">Поддержка</a>
+    </div>
   </div>
 
   <main>
@@ -434,37 +453,60 @@
   <footer class="footer">
     <div class="wrap">
       <div class="foot-card">
-        <div class="foot-top">
+        <div class="foot-head">
           <div class="foot-about">
             <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
             <p>Музыка. Ничего лишнего.</p>
-            <div class="foot-social">
-              <a class="foot-ico" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener" aria-label="Telegram-канал NedoSpot" title="Telegram-канал"><svg aria-hidden="true"><use href="#i-tg"/></svg></a>
-            </div>
           </div>
-          <nav class="foot-col" aria-label="Продукт">
-            <h4>Продукт</h4>
-            <a href="#download">Скачать</a>
-            <a href="#features">Возможности</a>
-            <a href="#interface">Интерфейс</a>
-            <a href="#faq">Вопросы</a>
+          <div class="foot-actions">
+            <a class="foot-btn" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg><span>Telegram-канал</span></a>
+            <a class="foot-btn" href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Поддержка</span></a>
+            <a class="foot-up" href="#top" aria-label="Наверх" title="Наверх"><svg aria-hidden="true"><use href="#i-up"/></svg></a>
+          </div>
+        </div>
+        <div class="foot-lists">
+          <nav class="fpl fpl-a" aria-label="Продукт">
+            <div class="fpl-head">
+              <span class="fpl-cover" aria-hidden="true"><svg><use href="#i-logo"/></svg></span>
+              <span class="fpl-info"><small>Плейлист</small><b>Продукт</b><em>4 трека</em></span>
+            </div>
+            <ol class="fpl-list">
+              <li><a href="#download"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Скачать</span><span class="fpl-d"></span></a></li>
+              <li><a href="#features"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Возможности</span><span class="fpl-d"></span></a></li>
+              <li><a href="#interface"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Интерфейс</span><span class="fpl-d"></span></a></li>
+              <li><a href="#faq"><span class="fpl-n"><i>04</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Вопросы</span><span class="fpl-d"></span></a></li>
+            </ol>
           </nav>
-          <nav class="foot-col" aria-label="Ссылки">
-            <h4>Ссылки</h4>
-            <a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener">Telegram-канал</a>
-            <a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">Поддержка</a>
-            <a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener">Все версии</a>
+          <nav class="fpl fpl-b" aria-label="Документы">
+            <div class="fpl-head">
+              <span class="fpl-cover" aria-hidden="true"><svg><use href="#i-doc"/></svg></span>
+              <span class="fpl-info"><small>Плейлист</small><b>Документы</b><em>3 трека</em></span>
+            </div>
+            <ol class="fpl-list">
+              <li><a href="/terms"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Пользовательское соглашение</span><span class="fpl-d"></span></a></li>
+              <li><a href="/privacy"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Политика конфиденциальности</span><span class="fpl-d"></span></a></li>
+              <li><a href="/support"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Контакты поддержки</span><span class="fpl-d"></span></a></li>
+            </ol>
           </nav>
-          <nav class="foot-col" aria-label="Документы">
-            <h4>Документы</h4>
-            <a href="/terms">Пользовательское соглашение</a>
-            <a href="/privacy">Политика конфиденциальности</a>
-            <a href="/support">Контакты поддержки</a>
+          <nav class="fpl fpl-c" aria-label="Сообщество">
+            <div class="fpl-head">
+              <span class="fpl-cover" aria-hidden="true"><svg><use href="#i-tg"/></svg></span>
+              <span class="fpl-info"><small>Плейлист</small><b>Сообщество</b><em>3 трека</em></span>
+            </div>
+            <ol class="fpl-list">
+              <li><a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><span class="fpl-n"><i>01</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Telegram-канал</span><span class="fpl-d">@NedoSpotApp</span></a></li>
+              <li><a href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener"><span class="fpl-n"><i>02</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Поддержка</span><span class="fpl-d">@NedoSpot_Support</span></a></li>
+              <li><a href="https://github.com/kasenkovdaniil0-pixel/NedoSpot-releases/releases" target="_blank" rel="noopener"><span class="fpl-n"><i>03</i><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="fpl-t">Все версии</span><span class="fpl-d">GitHub</span></a></li>
+            </ol>
           </nav>
         </div>
-        <div class="foot-bottom">
-          <span>© <span data-year>2026</span> NedoSpot</span>
-          <a href="#top" class="foot-up">Наверх</a>
+        <div class="foot-player">
+          <span class="fp-copy">© <span data-year>2026</span> NedoSpot</span>
+          <div class="fp" aria-hidden="true">
+            <span class="fp-t" data-fp-cur>0:00</span>
+            <span class="fp-bar"><i data-fp-bar></i></span>
+            <span class="fp-t" data-fp-total>3:41</span>
+          </div>
         </div>
       </div>
     </div>
@@ -483,6 +525,6 @@
   </div>
 
   <script src="js/flowers.js?v=5"></script>
-  <script src="js/main.js?v=7"></script>
+  <script src="js/main.js?v=8"></script>
 </body>
 </html>

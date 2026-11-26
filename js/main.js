@@ -732,6 +732,56 @@
       .catch(function () { clearTimeout(timer); });
   }
 
+  /* ---------- Меню «Документы» ---------- */
+
+  var docsBox = $('[data-docs]');
+  if (docsBox) {
+    var docsBtn = $('.nav-docs-btn', docsBox);
+    var closeT = 0;
+    var setDocs = function (open) {
+      clearTimeout(closeT);
+      docsBox.classList.toggle('open', open);
+      docsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    docsBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setDocs(!docsBox.classList.contains('open'));
+    });
+    if (finePointer) {
+      docsBox.addEventListener('mouseenter', function () { setDocs(true); });
+      docsBox.addEventListener('mouseleave', function () {
+        closeT = setTimeout(function () { setDocs(false); }, 160);
+      });
+    }
+    doc.addEventListener('click', function (e) { if (!docsBox.contains(e.target)) setDocs(false); });
+    docsBox.addEventListener('focusout', function (e) { if (!docsBox.contains(e.relatedTarget)) setDocs(false); });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && docsBox.classList.contains('open')) { setDocs(false); docsBtn.focus(); }
+    });
+  }
+
+  /* ---------- Подвал: «полоска трека» идёт вместе с прокруткой ---------- */
+
+  var fpBar = $('[data-fp-bar]');
+  var fpCur = $('[data-fp-cur]');
+  if (fpBar && fpCur) {
+    var FP_TOTAL = 221; // 3:41
+    var fpTick = false;
+    var fpUpdate = function () {
+      fpTick = false;
+      var max = doc.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      fpBar.style.setProperty('--p', p.toFixed(4));
+      var sec = Math.round(p * FP_TOTAL);
+      fpCur.textContent = Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+    };
+    window.addEventListener('scroll', function () {
+      if (!fpTick) { fpTick = true; requestAnimationFrame(fpUpdate); }
+    }, { passive: true });
+    window.addEventListener('resize', fpUpdate);
+    fpUpdate();
+  }
+
   /* ---------- Вопросы: раскрывающийся список ---------- */
 
   $$('[data-faq] .faq-q').forEach(function (btn) {
