@@ -726,7 +726,7 @@
         var ver = (data.tag_name || '').replace(/^v/, '');
         var plat = $('.platform span');
         if (ver && plat) {
-          plat.innerHTML = 'Версия ' + ver.replace(/[^0-9a-z.\-]/gi, '') + ' · Windows 10 и 11 (64-бит) · обновляется сам · <a href="' + RELEASES + '" target="_blank" rel="noopener">все версии</a>';
+          plat.innerHTML = 'Версия ' + ver.replace(/[^0-9a-z.\-]/gi, '') + ' · Windows 10 и 11 (64-бит) · Linux — скоро · обновляется сам · <a href="' + RELEASES + '" target="_blank" rel="noopener">все версии</a>';
         }
       })
       .catch(function () { clearTimeout(timer); });
