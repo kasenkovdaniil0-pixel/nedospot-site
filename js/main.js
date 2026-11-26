@@ -163,7 +163,7 @@
     burger.addEventListener('click', function () { setMenu(burger.getAttribute('aria-expanded') !== 'true'); });
     $$('a', menu).forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
     doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false); });
-    window.addEventListener('resize', function () { if (window.innerWidth > 1160 && menu.classList.contains('open')) setMenu(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1240 && menu.classList.contains('open')) setMenu(false); });
     burger.setAttribute('aria-label', T('menu.open'));
     onLang(function () { burger.setAttribute('aria-label', T(menu.classList.contains('open') ? 'menu.close' : 'menu.open')); });
   }
