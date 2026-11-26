@@ -1423,7 +1423,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .footer .brand { color: var(--ink); font-size: 16px; }
 .footer .brand svg { width: 22px; height: 22px; }
-.footer nav { display: flex; gap: 22px; }
+.footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
 .footer a:hover { color: var(--ink); }
 
 /* ---------- Просмотр скриншота ---------- */

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-title-ru="Пользовательское соглашение — NedoSpot" data-title-en="Terms of Use — NedoSpot">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Пользовательское соглашение — NedoSpot</title>
+  <meta name="description" content="Пользовательское соглашение (публичная оферта) NedoSpot.">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preload" href="/assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    /* тема и язык — до отрисовки, чтобы не мигало */
+    (function () {
+      var d = document.documentElement, t = null, l = null;
+      try { t = localStorage.getItem('ns-theme'); l = localStorage.getItem('ns-lang'); } catch (e) {}
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'ru' || q === 'en') l = q;
+      if (t === 'light') { d.setAttribute('data-theme', 'light'); document.querySelector('meta[name=theme-color]').content = '#f6f2eb'; }
+      if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; document.title = d.getAttribute('data-title-en'); }
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/docs.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-logo" viewBox="0 0 32 32"><path fill="currentColor" fill-rule="evenodd" d="M12 5h8a7 7 0 0 1 7 7v8a7 7 0 0 1-7 7h-8a7 7 0 0 1-7-7v-8a7 7 0 0 1 7-7zm1.6 7h4.8a2.6 2.6 0 0 1 2.6 2.6v3.3a2.6 2.6 0 0 1-2.6 2.6h-4.8a2.6 2.6 0 0 1-2.6-2.6v-3.3a2.6 2.6 0 0 1 2.6-2.6z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6-6-6 6 6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.4 3.6c.6-.2 1.2.3 1 1l-3.2 15c-.2.8-1 1.1-1.7.7l-4.8-3.6-2.4 2.3c-.3.3-.8.2-1-.2l-1.7-5.4-4.8-1.6c-.8-.3-.8-1.3 0-1.6l18.6-6.6Zm-3.6 4L9 13.2l.9 3.8.3-2.8 7.9-6.2c.3-.2 0-.6-.3-.4Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M20 14.6A8.3 8.3 0 0 1 9.4 4 8.3 8.3 0 1 0 20 14.6Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5.5c0 4.2 2.9 8 7 9.5 4.1-1.5 7-5.3 7-9.5V6l-7-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.6"/></g></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></g></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="5.5" width="18" height="13" rx="3"/><path d="M3 10h18M7 15h3"/></g></symbol>
+  <symbol id="i-bug" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="8" width="10" height="12" rx="5"/><path d="M9 8a3 3 0 0 1 6 0M12 12v8M3.5 13H7M17 13h3.5M4.5 8.5 7.5 10M19.5 8.5 16.5 10M4.5 18.5l3-1.5M19.5 18.5l-3-1.5"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2"/></g></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1Z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/></g></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24"><g fill="currentColor"><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(72 12 12)"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(144 12 12)"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(216 12 12)"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(288 12 12)"/></g><circle cx="12" cy="12" r="2.4" fill="#f6f2eb" opacity=".9"/></symbol>
+</svg>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="dhead">
+  <div class="wrap">
+    <div class="dhead-left">
+      <a class="brand" href="/" aria-label="NedoSpot"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
+      <a class="back" href="/"><svg aria-hidden="true"><use href="#i-left"/></svg><span class="txt"><span data-l="ru">На главную</span><span data-l="en">Home</span></span></a>
+    </div>
+    <div class="dhead-right">
+      <a class="chip tg-chip" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg><span class="txt"><span data-l="ru">Мы в Telegram</span><span data-l="en">Telegram</span></span></a>
+      <button class="chip icon-btn" type="button" data-theme-toggle aria-label="Сменить тему" title="Тема"><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+      <div class="lang" data-lang-box>
+        <button class="chip lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Язык / Language">
+          <span data-l="ru"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#1c57b8"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg></span><span data-l="en"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true"><rect width="19" height="13" fill="#fff"/><rect y="0" width="19" height="1" fill="#c8202f"/><rect y="2" width="19" height="1" fill="#c8202f"/><rect y="4" width="19" height="1" fill="#c8202f"/><rect y="6" width="19" height="1" fill="#c8202f"/><rect y="8" width="19" height="1" fill="#c8202f"/><rect y="10" width="19" height="1" fill="#c8202f"/><rect y="12" width="19" height="1" fill="#c8202f"/><rect width="8" height="7" fill="#273a7a"/><circle cx="1.5" cy="1.5" r=".45" fill="#fff"/><circle cx="1.5" cy="3.5" r=".45" fill="#fff"/><circle cx="1.5" cy="5.5" r=".45" fill="#fff"/><circle cx="4" cy="1.5" r=".45" fill="#fff"/><circle cx="4" cy="3.5" r=".45" fill="#fff"/><circle cx="4" cy="5.5" r=".45" fill="#fff"/><circle cx="6.5" cy="1.5" r=".45" fill="#fff"/><circle cx="6.5" cy="3.5" r=".45" fill="#fff"/><circle cx="6.5" cy="5.5" r=".45" fill="#fff"/></svg></span><span class="code"><span data-l="ru">RU</span><span data-l="en">EN</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg>
+        </button>
+        <ul class="lang-menu" role="menu">
+          <li><button type="button" role="menuitemradio" data-set-lang="ru" aria-checked="true"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#1c57b8"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg>Русский<svg class="tick" aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          <li><button type="button" role="menuitemradio" data-set-lang="en" aria-checked="false"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true"><rect width="19" height="13" fill="#fff"/><rect y="0" width="19" height="1" fill="#c8202f"/><rect y="2" width="19" height="1" fill="#c8202f"/><rect y="4" width="19" height="1" fill="#c8202f"/><rect y="6" width="19" height="1" fill="#c8202f"/><rect y="8" width="19" height="1" fill="#c8202f"/><rect y="10" width="19" height="1" fill="#c8202f"/><rect y="12" width="19" height="1" fill="#c8202f"/><rect width="8" height="7" fill="#273a7a"/><circle cx="1.5" cy="1.5" r=".45" fill="#fff"/><circle cx="1.5" cy="3.5" r=".45" fill="#fff"/><circle cx="1.5" cy="5.5" r=".45" fill="#fff"/><circle cx="4" cy="1.5" r=".45" fill="#fff"/><circle cx="4" cy="3.5" r=".45" fill="#fff"/><circle cx="4" cy="5.5" r=".45" fill="#fff"/><circle cx="6.5" cy="1.5" r=".45" fill="#fff"/><circle cx="6.5" cy="3.5" r=".45" fill="#fff"/><circle cx="6.5" cy="5.5" r=".45" fill="#fff"/></svg>English<svg class="tick" aria-hidden="true"><use href="#i-check"/></svg></button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="glow" aria-hidden="true"></div>
+<main class="wrap">
+<div data-l="ru">
+<section class="dhero">
+<nav class="dtabs" aria-label="Документы"><a href="/terms" aria-current="page"><svg aria-hidden="true"><use href="#i-doc"/></svg><span>Соглашение</span></a><a href="/privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Конфиденциальность</span></a><a href="/support"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Поддержка</span></a></nav>
+<span class="kicker">Публичная оферта</span>
+<h1>Пользовательское соглашение</h1>
+<div class="meta"><span><svg aria-hidden="true"><use href="#i-cal"/></svg>Обновлено: 26 ноября 2026</span><span><svg aria-hidden="true"><use href="#i-list"/></svg>10 разделов</span><span><svg aria-hidden="true"><use href="#i-clock"/></svg>≈ 3 мин чтения</span></div>
+
+</section>
+<div class="dgrid">
+<aside class="toc" aria-label="Содержание">
+<div class="toc-head"><span class="cover"><svg aria-hidden="true"><use href="#i-flower"/></svg></span><div><b>Пользовательское соглашение</b><small>10 разделов · 3 мин чтения</small></div></div>
+<button class="toc-toggle" type="button" aria-expanded="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="cnt" data-toc-cnt>01 / 10</span><span class="cur" data-toc-cur>Общие положения</span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+<div class="trk-list"><div><ol class="trk-ol">
+<li><a class="trk" href="#ru-1" data-sec="ru-1"><span class="no"><b>01</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Общие положения</span></a></li>
+<li><a class="trk" href="#ru-2" data-sec="ru-2"><span class="no"><b>02</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Предмет договора</span></a></li>
+<li><a class="trk" href="#ru-3" data-sec="ru-3"><span class="no"><b>03</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Порядок предоставления услуг</span></a></li>
+<li><a class="trk" href="#ru-4" data-sec="ru-4"><span class="no"><b>04</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Оплата и возвраты</span></a></li>
+<li><a class="trk" href="#ru-5" data-sec="ru-5"><span class="no"><b>05</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Права и обязанности Заказчика</span></a></li>
+<li><a class="trk" href="#ru-6" data-sec="ru-6"><span class="no"><b>06</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Интеллектуальная собственность</span></a></li>
+<li><a class="trk" href="#ru-7" data-sec="ru-7"><span class="no"><b>07</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Права Исполнителя</span></a></li>
+<li><a class="trk" href="#ru-8" data-sec="ru-8"><span class="no"><b>08</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Ответственность</span></a></li>
+<li><a class="trk" href="#ru-9" data-sec="ru-9"><span class="no"><b>09</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Конфиденциальность</span></a></li>
+<li><a class="trk" href="#ru-10" data-sec="ru-10"><span class="no"><b>10</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Заключительные положения</span></a></li>
+</ol></div></div></aside>
+<article class="doc">
+<section class="dsec" id="ru-1"><h2><span class="sn">01</span><span>Общие положения</span></h2>
+<p><span class="pt">1.1.</span> Настоящая оферта (далее — «Договор») регулирует отношения между Исполнителем и Заказчиком в связи с предоставлением Исполнителем цифровых товаров и/или услуг посредством онлайн-сервиса (далее — «Сервис»).</p>
+<p><span class="pt">1.2.</span> Использование Сервиса, регистрация, оформление заказа, оплата услуг или получение доступа к цифровым материалам означают полное и безоговорочное принятие Заказчиком условий настоящего Договора.</p>
+<p><span class="pt">1.3.</span> В случае несогласия с условиями Договора Заказчик обязан прекратить использование Сервиса.</p>
+</section>
+<section class="dsec" id="ru-2"><h2><span class="sn">02</span><span>Предмет договора</span></h2>
+<p><span class="pt">2.1.</span> В соответствии с условиями настоящего Договора Исполнитель принимает на себя обязательство по предоставлению Заказчику цифровых товаров и/или услуг, а Заказчик обязуется принять указанные товары и услуги и произвести их оплату в порядке и на условиях, определённых настоящей офертой.</p>
+<p><span class="pt">2.2.</span> Доступ к услугам и цифровым товарам обеспечивается посредством программных, технических и информационных средств Сервиса.</p>
+<p><span class="pt">2.3.</span> Конкретный состав, стоимость, срок действия и условия предоставления соответствующего товара или услуги указываются в Сервисе до момента оплаты.</p>
+</section>
+<section class="dsec" id="ru-3"><h2><span class="sn">03</span><span>Порядок предоставления услуг</span></h2>
+<p><span class="pt">3.1.</span> После успешной оплаты Заказчику предоставляется доступ к приобретённому товару или услуге в порядке, предусмотренном Сервисом.</p>
+<p><span class="pt">3.2.</span> Заказчик самостоятельно обеспечивает наличие необходимых технических средств и доступа к сети Интернет.</p>
+<p><span class="pt">3.3.</span> Срок предоставления доступа определяется условиями соответствующего тарифа или заказа.</p>
+</section>
+<section class="dsec" id="ru-4"><h2><span class="sn">04</span><span>Оплата и возвраты</span></h2>
+<p><span class="pt">4.1.</span> Стоимость товаров и услуг определяется тарифами, опубликованными в Сервисе на момент оформления заказа.</p>
+<p><span class="pt">4.2.</span> Оплата производится посредством доступных в Сервисе платёжных инструментов.</p>
+<p><span class="pt">4.3.</span> Возврат денежных средств осуществляется в соответствии с применимым законодательством и условиями соответствующего товара или услуги.</p>
+<p><span class="pt">4.4.</span> При возникновении технической проблемы Заказчик вправе обратиться в <a href="/support">службу поддержки</a> для проверки обстоятельств и решения вопроса о восстановлении доступа или возврате денежных средств в предусмотренных случаях.</p>
+</section>
+<section class="dsec" id="ru-5"><h2><span class="sn">05</span><span>Права и обязанности Заказчика</span></h2>
+<p><span class="pt">5.1.</span> Заказчик обязуется использовать Сервис исключительно законным способом и соблюдать условия настоящего Договора.</p>
+<p><span class="pt">5.2.</span> Запрещается использовать Сервис для мошенничества, нарушения законодательства, распространения вредоносного программного обеспечения, нарушения прав третьих лиц или иных противоправных действий.</p>
+<p><span class="pt">5.3.</span> Заказчик несёт ответственность за достоверность предоставляемой им информации и законность своих действий при использовании Сервиса.</p>
+</section>
+<section class="dsec" id="ru-6"><h2><span class="sn">06</span><span>Интеллектуальная собственность</span></h2>
+<p><span class="pt">6.1.</span> Материалы, размещённые в Сервисе, охраняются законодательством об интеллектуальной собственности.</p>
+<p><span class="pt">6.2.</span> Приобретение товара или услуги не означает передачу Заказчику исключительных прав на соответствующие материалы.</p>
+<p><span class="pt">6.3.</span> Копирование, перепродажа, распространение, публикация и передача материалов третьим лицам запрещены, если иное прямо не предусмотрено условиями конкретного товара или законодательством.</p>
+</section>
+<section class="dsec" id="ru-7"><h2><span class="sn">07</span><span>Права Исполнителя</span></h2>
+<p><span class="pt">7.1.</span> Исполнитель вправе временно ограничить работу Сервиса для проведения технических работ, обновлений или устранения неисправностей.</p>
+<p><span class="pt">7.2.</span> Исполнитель вправе ограничить или прекратить доступ Заказчика к Сервису при нарушении настоящего Договора или применимого законодательства.</p>
+<p><span class="pt">7.3.</span> Исполнитель вправе изменять функциональность Сервиса, условия тарифов и настоящий Договор с публикацией актуальной редакции в Сервисе.</p>
+</section>
+<section class="dsec" id="ru-8"><h2><span class="sn">08</span><span>Ответственность</span></h2>
+<p><span class="pt">8.1.</span> Исполнитель не гарантирует бесперебойную работу Сервиса и достижение Заказчиком какого-либо конкретного результата, если такой результат прямо не предусмотрен условиями приобретённой услуги.</p>
+<p><span class="pt">8.2.</span> Исполнитель не несёт ответственности за сбои, вызванные действиями третьих лиц, операторов связи, платёжных систем, техническими неисправностями или иными обстоятельствами, находящимися вне разумного контроля Исполнителя.</p>
+<p><span class="pt">8.3.</span> Заказчик самостоятельно несёт ответственность за использование предоставленных товаров, материалов и услуг.</p>
+</section>
+<section class="dsec" id="ru-9"><h2><span class="sn">09</span><span>Конфиденциальность</span></h2>
+<p><span class="pt">9.1.</span> Обработка персональных данных осуществляется в соответствии с отдельной <a href="/privacy">Политикой конфиденциальности</a>.</p>
+<p><span class="pt">9.2.</span> Исполнитель принимает разумные технические и организационные меры для защиты информации Пользователей.</p>
+</section>
+<section class="dsec" id="ru-10"><h2><span class="sn">10</span><span>Заключительные положения</span></h2>
+<p><span class="pt">10.1.</span> Актуальная редакция настоящего Договора публикуется в Сервисе.</p>
+<p><span class="pt">10.2.</span> Продолжение использования Сервиса после публикации новой редакции означает принятие её условий в той мере, в какой это допускается применимым законодательством.</p>
+<p><span class="pt">10.3.</span> По вопросам использования Сервиса Заказчик может обратиться в <a href="/support">службу поддержки</a> по указанным в Сервисе контактным данным.</p>
+</section>
+</article></div></div>
+<div data-l="en">
+<section class="dhero">
+<nav class="dtabs" aria-label="Documents"><a href="/terms" aria-current="page"><svg aria-hidden="true"><use href="#i-doc"/></svg><span>Terms</span></a><a href="/privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Privacy</span></a><a href="/support"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Support</span></a></nav>
+<span class="kicker">Public Offer</span>
+<h1>Terms of Use</h1>
+<div class="meta"><span><svg aria-hidden="true"><use href="#i-cal"/></svg>Updated: November 26, 2026</span><span><svg aria-hidden="true"><use href="#i-list"/></svg>10 sections</span><span><svg aria-hidden="true"><use href="#i-clock"/></svg>≈ 4 min read</span></div>
+<p class="note"><svg aria-hidden="true"><use href="#i-info"/></svg><span>This English version is a translation provided for convenience. If the versions differ, the Russian version prevails.</span></p>
+</section>
+<div class="dgrid">
+<aside class="toc" aria-label="Contents">
+<div class="toc-head"><span class="cover"><svg aria-hidden="true"><use href="#i-flower"/></svg></span><div><b>Terms of Use</b><small>10 sections · 4 min read</small></div></div>
+<button class="toc-toggle" type="button" aria-expanded="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="cnt" data-toc-cnt>01 / 10</span><span class="cur" data-toc-cur>General Provisions</span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
+<div class="trk-list"><div><ol class="trk-ol">
+<li><a class="trk" href="#en-1" data-sec="en-1"><span class="no"><b>01</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">General Provisions</span></a></li>
+<li><a class="trk" href="#en-2" data-sec="en-2"><span class="no"><b>02</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Subject of the Agreement</span></a></li>
+<li><a class="trk" href="#en-3" data-sec="en-3"><span class="no"><b>03</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Provision of Services</span></a></li>
+<li><a class="trk" href="#en-4" data-sec="en-4"><span class="no"><b>04</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Payment and Refunds</span></a></li>
+<li><a class="trk" href="#en-5" data-sec="en-5"><span class="no"><b>05</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Rights and Obligations of the Customer</span></a></li>
+<li><a class="trk" href="#en-6" data-sec="en-6"><span class="no"><b>06</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Intellectual Property</span></a></li>
+<li><a class="trk" href="#en-7" data-sec="en-7"><span class="no"><b>07</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Rights of the Contractor</span></a></li>
+<li><a class="trk" href="#en-8" data-sec="en-8"><span class="no"><b>08</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Liability</span></a></li>
+<li><a class="trk" href="#en-9" data-sec="en-9"><span class="no"><b>09</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Privacy</span></a></li>
+<li><a class="trk" href="#en-10" data-sec="en-10"><span class="no"><b>10</b><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></span><span class="tt">Final Provisions</span></a></li>
+</ol></div></div></aside>
+<article class="doc">
+<section class="dsec" id="en-1"><h2><span class="sn">01</span><span>General Provisions</span></h2>
+<p><span class="pt">1.1.</span> This offer (the "Agreement") governs the relationship between the Contractor and the Customer in connection with the Contractor's provision of digital goods and/or services through the online service (the "Service").</p>
+<p><span class="pt">1.2.</span> Using the Service, registering, placing an order, paying for services or gaining access to digital materials constitutes the Customer's full and unconditional acceptance of the terms of this Agreement.</p>
+<p><span class="pt">1.3.</span> If the Customer does not agree with the terms of the Agreement, the Customer must stop using the Service.</p>
+</section>
+<section class="dsec" id="en-2"><h2><span class="sn">02</span><span>Subject of the Agreement</span></h2>
+<p><span class="pt">2.1.</span> Under the terms of this Agreement, the Contractor undertakes to provide the Customer with digital goods and/or services, and the Customer undertakes to accept these goods and services and to pay for them in the manner and on the terms set out in this offer.</p>
+<p><span class="pt">2.2.</span> Access to the services and digital goods is provided through the software, technical and information resources of the Service.</p>
+<p><span class="pt">2.3.</span> The specific scope, price, validity period and terms of each good or service are shown in the Service before payment.</p>
+</section>
+<section class="dsec" id="en-3"><h2><span class="sn">03</span><span>Provision of Services</span></h2>
+<p><span class="pt">3.1.</span> After successful payment, the Customer is given access to the purchased good or service in the manner provided by the Service.</p>
+<p><span class="pt">3.2.</span> The Customer is responsible for having the necessary technical equipment and Internet access.</p>
+<p><span class="pt">3.3.</span> The period of access is determined by the terms of the relevant plan or order.</p>
+</section>
+<section class="dsec" id="en-4"><h2><span class="sn">04</span><span>Payment and Refunds</span></h2>
+<p><span class="pt">4.1.</span> The price of goods and services is determined by the rates published in the Service at the time the order is placed.</p>
+<p><span class="pt">4.2.</span> Payment is made using the payment methods available in the Service.</p>
+<p><span class="pt">4.3.</span> Refunds are made in accordance with applicable law and the terms of the relevant good or service.</p>
+<p><span class="pt">4.4.</span> If a technical problem occurs, the Customer may contact <a href="/support">support</a> to have the circumstances reviewed and to decide on restoring access or refunding money where applicable.</p>
+</section>
+<section class="dsec" id="en-5"><h2><span class="sn">05</span><span>Rights and Obligations of the Customer</span></h2>
+<p><span class="pt">5.1.</span> The Customer undertakes to use the Service only lawfully and to comply with the terms of this Agreement.</p>
+<p><span class="pt">5.2.</span> It is prohibited to use the Service for fraud, breaking the law, distributing malicious software, infringing the rights of third parties or any other unlawful actions.</p>
+<p><span class="pt">5.3.</span> The Customer is responsible for the accuracy of the information they provide and for the lawfulness of their actions when using the Service.</p>
+</section>
+<section class="dsec" id="en-6"><h2><span class="sn">06</span><span>Intellectual Property</span></h2>
+<p><span class="pt">6.1.</span> Materials published in the Service are protected by intellectual property law.</p>
+<p><span class="pt">6.2.</span> Purchasing a good or service does not transfer the exclusive rights to the relevant materials to the Customer.</p>
+<p><span class="pt">6.3.</span> Copying, reselling, distributing, publishing and transferring materials to third parties is prohibited unless expressly permitted by the terms of a specific good or service or by law.</p>
+</section>
+<section class="dsec" id="en-7"><h2><span class="sn">07</span><span>Rights of the Contractor</span></h2>
+<p><span class="pt">7.1.</span> The Contractor may temporarily restrict the operation of the Service for maintenance, updates or troubleshooting.</p>
+<p><span class="pt">7.2.</span> The Contractor may restrict or terminate the Customer's access to the Service if this Agreement or applicable law is violated.</p>
+<p><span class="pt">7.3.</span> The Contractor may change the functionality of the Service, the terms of plans and this Agreement by publishing the current version in the Service.</p>
+</section>
+<section class="dsec" id="en-8"><h2><span class="sn">08</span><span>Liability</span></h2>
+<p><span class="pt">8.1.</span> The Contractor does not guarantee uninterrupted operation of the Service or that the Customer will achieve any particular result, unless such a result is expressly provided for by the terms of the purchased service.</p>
+<p><span class="pt">8.2.</span> The Contractor is not liable for failures caused by the actions of third parties, telecom operators, payment systems, technical malfunctions or other circumstances beyond the Contractor's reasonable control.</p>
+<p><span class="pt">8.3.</span> The Customer is solely responsible for the use of the goods, materials and services provided.</p>
+</section>
+<section class="dsec" id="en-9"><h2><span class="sn">09</span><span>Privacy</span></h2>
+<p><span class="pt">9.1.</span> Personal data is processed in accordance with a separate <a href="/privacy">Privacy Policy</a>.</p>
+<p><span class="pt">9.2.</span> The Contractor takes reasonable technical and organizational measures to protect Users' information.</p>
+</section>
+<section class="dsec" id="en-10"><h2><span class="sn">10</span><span>Final Provisions</span></h2>
+<p><span class="pt">10.1.</span> The current version of this Agreement is published in the Service.</p>
+<p><span class="pt">10.2.</span> Continued use of the Service after a new version is published means acceptance of its terms to the extent permitted by applicable law.</p>
+<p><span class="pt">10.3.</span> For questions about using the Service, the Customer may contact <a href="/support">support</a> using the contact details provided in the Service.</p>
+</section>
+</article></div></div>
+</main>
+<footer class="dfoot">
+  <div class="wrap">
+    <a class="brand" href="/"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
+    <nav aria-label="Ссылки"><a href="/terms" aria-current="page"><span data-l="ru">Соглашение</span><span data-l="en">Terms</span></a><a href="/privacy"><span data-l="ru">Конфиденциальность</span><span data-l="en">Privacy</span></a><a href="/support"><span data-l="ru">Поддержка</span><span data-l="en">Support</span></a><a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener">Telegram</a></nav>
+    <span>© <span data-year>2026</span> NedoSpot</span>
+  </div>
+</footer>
+<script src="/js/docs.js?v=1" defer></script>
+</body>
+</html>

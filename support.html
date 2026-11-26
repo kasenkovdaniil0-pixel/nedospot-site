@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-title-ru="Контакты поддержки — NedoSpot" data-title-en="Support — NedoSpot">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Контакты поддержки — NedoSpot</title>
+  <meta name="description" content="Поддержка NedoSpot в Telegram: вопросы о приложении, оплате, возврате денег и персональных данных.">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <link rel="preload" href="/assets/fonts/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    /* тема и язык — до отрисовки, чтобы не мигало */
+    (function () {
+      var d = document.documentElement, t = null, l = null;
+      try { t = localStorage.getItem('ns-theme'); l = localStorage.getItem('ns-lang'); } catch (e) {}
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'ru' || q === 'en') l = q;
+      if (t === 'light') { d.setAttribute('data-theme', 'light'); document.querySelector('meta[name=theme-color]').content = '#f6f2eb'; }
+      if (l === 'en') { d.setAttribute('data-lang', 'en'); d.lang = 'en'; document.title = d.getAttribute('data-title-en'); }
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/docs.css?v=1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-logo" viewBox="0 0 32 32"><path fill="currentColor" fill-rule="evenodd" d="M12 5h8a7 7 0 0 1 7 7v8a7 7 0 0 1-7 7h-8a7 7 0 0 1-7-7v-8a7 7 0 0 1 7-7zm1.6 7h4.8a2.6 2.6 0 0 1 2.6 2.6v3.3a2.6 2.6 0 0 1-2.6 2.6h-4.8a2.6 2.6 0 0 1-2.6-2.6v-3.3a2.6 2.6 0 0 1 2.6-2.6z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m6-6-6 6 6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.4 3.6c.6-.2 1.2.3 1 1l-3.2 15c-.2.8-1 1.1-1.7.7l-4.8-3.6-2.4 2.3c-.3.3-.8.2-1-.2l-1.7-5.4-4.8-1.6c-.8-.3-.8-1.3 0-1.6l18.6-6.6Zm-3.6 4L9 13.2l.9 3.8.3-2.8 7.9-6.2c.3-.2 0-.6-.3-.4Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M20 14.6A8.3 8.3 0 0 1 9.4 4 8.3 8.3 0 1 0 20 14.6Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7.5A2.5 2.5 0 0 0 5 5.5v13A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5.5c0 4.2 2.9 8 7 9.5 4.1-1.5 7-5.3 7-9.5V6l-7-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.6"/></g></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></g></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="5.5" width="18" height="13" rx="3"/><path d="M3 10h18M7 15h3"/></g></symbol>
+  <symbol id="i-bug" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="8" width="10" height="12" rx="5"/><path d="M9 8a3 3 0 0 1 6 0M12 12v8M3.5 13H7M17 13h3.5M4.5 8.5 7.5 10M19.5 8.5 16.5 10M4.5 18.5l3-1.5M19.5 18.5l-3-1.5"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2"/></g></symbol>
+  <symbol id="i-news" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1Z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/></g></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24"><g fill="currentColor"><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(72 12 12)"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(144 12 12)"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(216 12 12)"/><ellipse cx="12" cy="6.2" rx="3.2" ry="4.6" transform="rotate(288 12 12)"/></g><circle cx="12" cy="12" r="2.4" fill="#f6f2eb" opacity=".9"/></symbol>
+</svg>
+<div class="progress" aria-hidden="true"><i></i></div>
+<header class="dhead">
+  <div class="wrap">
+    <div class="dhead-left">
+      <a class="brand" href="/" aria-label="NedoSpot"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
+      <a class="back" href="/"><svg aria-hidden="true"><use href="#i-left"/></svg><span class="txt"><span data-l="ru">На главную</span><span data-l="en">Home</span></span></a>
+    </div>
+    <div class="dhead-right">
+      <a class="chip tg-chip" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg><span class="txt"><span data-l="ru">Мы в Telegram</span><span data-l="en">Telegram</span></span></a>
+      <button class="chip icon-btn" type="button" data-theme-toggle aria-label="Сменить тему" title="Тема"><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+      <div class="lang" data-lang-box>
+        <button class="chip lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Язык / Language">
+          <span data-l="ru"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#1c57b8"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg></span><span data-l="en"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true"><rect width="19" height="13" fill="#fff"/><rect y="0" width="19" height="1" fill="#c8202f"/><rect y="2" width="19" height="1" fill="#c8202f"/><rect y="4" width="19" height="1" fill="#c8202f"/><rect y="6" width="19" height="1" fill="#c8202f"/><rect y="8" width="19" height="1" fill="#c8202f"/><rect y="10" width="19" height="1" fill="#c8202f"/><rect y="12" width="19" height="1" fill="#c8202f"/><rect width="8" height="7" fill="#273a7a"/><circle cx="1.5" cy="1.5" r=".45" fill="#fff"/><circle cx="1.5" cy="3.5" r=".45" fill="#fff"/><circle cx="1.5" cy="5.5" r=".45" fill="#fff"/><circle cx="4" cy="1.5" r=".45" fill="#fff"/><circle cx="4" cy="3.5" r=".45" fill="#fff"/><circle cx="4" cy="5.5" r=".45" fill="#fff"/><circle cx="6.5" cy="1.5" r=".45" fill="#fff"/><circle cx="6.5" cy="3.5" r=".45" fill="#fff"/><circle cx="6.5" cy="5.5" r=".45" fill="#fff"/></svg></span><span class="code"><span data-l="ru">RU</span><span data-l="en">EN</span></span><svg class="chev" aria-hidden="true"><use href="#i-chev"/></svg>
+        </button>
+        <ul class="lang-menu" role="menu">
+          <li><button type="button" role="menuitemradio" data-set-lang="ru" aria-checked="true"><svg class="flag" viewBox="0 0 9 6" aria-hidden="true"><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#1c57b8"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg>Русский<svg class="tick" aria-hidden="true"><use href="#i-check"/></svg></button></li>
+          <li><button type="button" role="menuitemradio" data-set-lang="en" aria-checked="false"><svg class="flag" viewBox="0 0 19 13" aria-hidden="true"><rect width="19" height="13" fill="#fff"/><rect y="0" width="19" height="1" fill="#c8202f"/><rect y="2" width="19" height="1" fill="#c8202f"/><rect y="4" width="19" height="1" fill="#c8202f"/><rect y="6" width="19" height="1" fill="#c8202f"/><rect y="8" width="19" height="1" fill="#c8202f"/><rect y="10" width="19" height="1" fill="#c8202f"/><rect y="12" width="19" height="1" fill="#c8202f"/><rect width="8" height="7" fill="#273a7a"/><circle cx="1.5" cy="1.5" r=".45" fill="#fff"/><circle cx="1.5" cy="3.5" r=".45" fill="#fff"/><circle cx="1.5" cy="5.5" r=".45" fill="#fff"/><circle cx="4" cy="1.5" r=".45" fill="#fff"/><circle cx="4" cy="3.5" r=".45" fill="#fff"/><circle cx="4" cy="5.5" r=".45" fill="#fff"/><circle cx="6.5" cy="1.5" r=".45" fill="#fff"/><circle cx="6.5" cy="3.5" r=".45" fill="#fff"/><circle cx="6.5" cy="5.5" r=".45" fill="#fff"/></svg>English<svg class="tick" aria-hidden="true"><use href="#i-check"/></svg></button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="glow" aria-hidden="true"></div>
+<main class="wrap">
+<div data-l="ru">
+<section class="dhero"><nav class="dtabs" aria-label="Документы"><a href="/terms"><svg aria-hidden="true"><use href="#i-doc"/></svg><span>Соглашение</span></a><a href="/privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Конфиденциальность</span></a><a href="/support" aria-current="page"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Поддержка</span></a></nav>
+  <span class="kicker">Мы на связи</span>
+  <h1>Контакты поддержки</h1>
+  <p class="lead">Вопросы о работе приложения, оплате, возврате денег и персональных данных.</p>
+</section>
+<div class="sup">
+  <div class="sup-top">
+    <div class="card tg-card">
+      <span class="plane"><svg aria-hidden="true"><use href="#i-tg"/></svg></span>
+      <div><span class="small">Поддержка в Telegram</span><span class="handle">@NedoSpot_Support</span></div>
+      <a class="big-btn" href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">Написать в поддержку<span class="ico"><svg aria-hidden="true"><use href="#i-out"/></svg></span></a>
+    </div>
+    <div class="card times">
+      <div class="time"><span class="num">1</span><div><b>рабочий день</b><span>отвечаем на обращения</span></div></div>
+      <div class="time"><span class="num">7</span><div><b>рабочих дней</b><span>на заявки о возврате денег</span></div></div>
+    </div>
+  </div>
+  <h2>Что указать в обращении</h2>
+  <div class="two">
+    <div class="card"><h3><svg aria-hidden="true"><use href="#i-card"/></svg>По вопросу оплаты</h3><ul><li>дату, сумму и способ платежа (СБП, криптовалюта, Telegram Stars)</li><li>чек или скриншот, если есть</li></ul></div>
+    <div class="card"><h3><svg aria-hidden="true"><use href="#i-bug"/></svg>По ошибке в приложении</h3><ul><li>версию приложения и систему (Windows или Linux)</li><li>что вы делали и что произошло</li></ul></div>
+  </div>
+  <p class="warn"><svg aria-hidden="true"><use href="#i-lock"/></svg><span>Сотрудники поддержки никогда не просят пароль, код двухфакторной защиты или данные банковской карты.</span></p>
+  <h2>Другое</h2>
+  <div class="links">
+    <a class="link-row" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><span class="lr-ico"><svg aria-hidden="true"><use href="#i-news"/></svg></span><div><b>Новости и объявления</b><span>Telegram-канал @NedoSpotApp</span></div><svg class="go" aria-hidden="true"><use href="#i-out"/></svg></a>
+    <div class="link-row"><span class="lr-ico"><svg aria-hidden="true"><use href="#i-doc"/></svg></span><div><b>Документы</b><span class="docs"><a class="inline" href="/terms">Пользовательское соглашение</a><a class="inline" href="/privacy">Политика конфиденциальности</a></span></div></div>
+  </div>
+</div>
+</div>
+<div data-l="en">
+<section class="dhero"><nav class="dtabs" aria-label="Documents"><a href="/terms"><svg aria-hidden="true"><use href="#i-doc"/></svg><span>Terms</span></a><a href="/privacy"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Privacy</span></a><a href="/support" aria-current="page"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>Support</span></a></nav>
+  <span class="kicker">We are here to help</span>
+  <h1>Support</h1>
+  <p class="lead">Questions about the app, payments, refunds and personal data.</p>
+</section>
+<div class="sup">
+  <div class="sup-top">
+    <div class="card tg-card">
+      <span class="plane"><svg aria-hidden="true"><use href="#i-tg"/></svg></span>
+      <div><span class="small">Support on Telegram</span><span class="handle">@NedoSpot_Support</span></div>
+      <a class="big-btn" href="https://t.me/NedoSpot_Support" target="_blank" rel="noopener">Message support<span class="ico"><svg aria-hidden="true"><use href="#i-out"/></svg></span></a>
+    </div>
+    <div class="card times">
+      <div class="time"><span class="num">1</span><div><b>business day</b><span>to reply to your request</span></div></div>
+      <div class="time"><span class="num">7</span><div><b>business days</b><span>for refund requests</span></div></div>
+    </div>
+  </div>
+  <h2>What to include in your request</h2>
+  <div class="two">
+    <div class="card"><h3><svg aria-hidden="true"><use href="#i-card"/></svg>About a payment</h3><ul><li>the date, amount and payment method (SBP, cryptocurrency, Telegram Stars)</li><li>a receipt or screenshot, if you have one</li></ul></div>
+    <div class="card"><h3><svg aria-hidden="true"><use href="#i-bug"/></svg>About a bug in the app</h3><ul><li>the app version and your system (Windows or Linux)</li><li>what you were doing and what happened</li></ul></div>
+  </div>
+  <p class="warn"><svg aria-hidden="true"><use href="#i-lock"/></svg><span>Support staff will never ask for your password, two-factor code or bank card details.</span></p>
+  <h2>Other</h2>
+  <div class="links">
+    <a class="link-row" href="https://t.me/NedoSpotApp" target="_blank" rel="noopener"><span class="lr-ico"><svg aria-hidden="true"><use href="#i-news"/></svg></span><div><b>News and announcements</b><span>Telegram channel @NedoSpotApp</span></div><svg class="go" aria-hidden="true"><use href="#i-out"/></svg></a>
+    <div class="link-row"><span class="lr-ico"><svg aria-hidden="true"><use href="#i-doc"/></svg></span><div><b>Documents</b><span class="docs"><a class="inline" href="/terms">Terms of Use</a><a class="inline" href="/privacy">Privacy Policy</a></span></div></div>
+  </div>
+</div>
+</div>
+</main>
+<footer class="dfoot">
+  <div class="wrap">
+    <a class="brand" href="/"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>NedoSpot</span></a>
+    <nav aria-label="Ссылки"><a href="/terms"><span data-l="ru">Соглашение</span><span data-l="en">Terms</span></a><a href="/privacy"><span data-l="ru">Конфиденциальность</span><span data-l="en">Privacy</span></a><a href="/support" aria-current="page"><span data-l="ru">Поддержка</span><span data-l="en">Support</span></a><a href="https://t.me/NedoSpotApp" target="_blank" rel="noopener">Telegram</a></nav>
+    <span>© <span data-year>2026</span> NedoSpot</span>
+  </div>
+</footer>
+<script src="/js/docs.js?v=1" defer></script>
+</body>
+</html>
